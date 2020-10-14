@@ -1,0 +1,64 @@
+#about-page {
+  grid-column: 1/2;
+  grid-row: 2/3;
+
+  .title {
+    font-size: 36px;
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+
+  .center-content {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    display: flex;
+    font-size: 18px;
+    position: relative;
+    align-self: center;
+    justify-self: center;
+
+    .keyword {
+      color: orangered;
+    }
+
+    .center-text {
+      position: absolute;
+      right: -24px;
+    }
+  }
+
+  .logo {
+    height: 40vmin;
+    pointer-events: none;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  .social-media-container {
+    grid-row: 3/4;
+    grid-column: 3/4;
+    align-self: end;
+    justify-self: end;
+    padding: 16px;
+
+    .social-media-link {
+      color: white;
+      padding: 4px 6px;
+
+      .social-media-logo {
+        width: 1.2em;
+        height: 1.2em;
+      }
+    }
+  }
+
+  .bottom-message {
+    grid-row: 3/4;
+    grid-column: 2/3;
+    align-self: end;
+    justify-self: bottom;
+    padding-bottom: 32px;
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,56 @@
+@import '../../global';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  background-color: $eerie-black;
+  height: $header-height;
+  padding: 0 24px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  font-family: 'monospaced';
+
+  .brackets {
+    position: absolute;
+    color: $white;
+    width: 39.391px;
+    transition: top 0.3s ease, left 0.3s ease, width 0.3s ease;
+
+    .left-bracket,
+    .right-bracket {
+      position: absolute;
+    }
+
+    .left-bracket {
+      right: 100%;
+    }
+
+    .right-bracket {
+      left: 100%;
+    }
+  }
+
+  a,
+  span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: $white;
+    font-size: 16px;
+  }
+
+  a {
+    padding: 0 12px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
