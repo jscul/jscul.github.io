@@ -21,6 +21,11 @@ const sections = [
     previous: '/',
   },
   {
+    name: 'about',
+    next: 'experience',
+    previous: '/',
+  },
+  {
     name: 'experience',
     next: 'work',
     previous: 'about',

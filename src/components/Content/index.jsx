@@ -23,6 +23,7 @@ export default ({page, sections}) => {
       .scrollIntoView({behavior: 'smooth'});
   }, [page]);
 
+  // return an array of grid sections
   return sections.map((section, i) => {
     const Section = _sections[section.name];
     return (
