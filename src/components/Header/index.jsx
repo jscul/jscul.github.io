@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 
 import './style.scss';
 
-export default ({page}) => {
+export default ({page, sections}) => {
   const timers = useRef([]);
 
   const header = useRef(null);
@@ -14,10 +14,10 @@ export default ({page}) => {
 
   useEffect(() => {
     if (initialLoad && header.current && brackets.current) {
-      const headerBounds = header.current.getBoundingClientRect(),
-        targetBounds = document
-          .getElementById(page || 'home')
-          .getBoundingClientRect();
+      const headerBounds = header.current.getBoundingClientRect();
+      const targetBounds = document
+        .getElementById(page)
+        .getBoundingClientRect();
       brackets.current.style.top = targetBounds.top - headerBounds.top + 'px';
       brackets.current.style.left =
         targetBounds.left - headerBounds.left + 'px';
@@ -33,7 +33,7 @@ export default ({page}) => {
   });
 
   useEffect(() => {
-    if (!initialLoad) moveBracketsTo(page || 'home');
+    if (!initialLoad) moveBracketsTo(page);
   }, [page]);
 
   const moveBracketsTo = id => {
@@ -67,23 +67,45 @@ export default ({page}) => {
         <div className={'left-bracket'}>[</div>
         <div className={'right-bracket'}>]</div>
       </div>
-      <NavLink to='/' className={'link'}>
+      <NavLink to='/' exact className={'link'}>
         <span id={'home'}>home</span>
       </NavLink>
       <div className='stretch'></div>
-      <NavLink to='/about' className={'link'}>
+      <NavLink to='/about' exact className={'link'}>
         <span id={'about'}>about</span>
       </NavLink>
+      <NavLink to='/about/more' exact className={'link'}>
+        <span id={'about-more'}>1</span>
+      </NavLink>
+
       <span>-></span>
-      <NavLink to='/experience' className={'link'}>
+      <NavLink to='/experience' exact className={'link'}>
         <span id={'experience'}>experience</span>
       </NavLink>
-      <span>-></span>
-      <NavLink to='/work' className={'link'}>
-        <span id={'work'}>work</span>
+      <NavLink to='/about/more' exact className={'link'}>
+        <span id={'about-more'}>1</span>
+      </NavLink>
+      <NavLink to='/about/more' exact className={'link'}>
+        <span id={'about-more'}>2</span>
+      </NavLink>
+      <NavLink to='/about/more' exact className={'link'}>
+        <span id={'about-more'}>3</span>
       </NavLink>
       <span>-></span>
-      <NavLink to='/contact' className={'link'}>
+      <NavLink to='/portfolio' exact className={'link'}>
+        <span id={'portfolio'}>portfolio</span>
+      </NavLink>
+      <NavLink to='/about/more' exact className={'link'}>
+        <span id={'about-more'}>1</span>
+      </NavLink>
+      <NavLink to='/about/more' exact className={'link'}>
+        <span id={'about-more'}>2</span>
+      </NavLink>
+      <NavLink to='/about/more' exact className={'link'}>
+        <span id={'about-more'}>3</span>
+      </NavLink>
+      <span>-></span>
+      <NavLink to='/contact' exact className={'link'}>
         <span id={'contact'}>contact</span>
       </NavLink>
     </header>

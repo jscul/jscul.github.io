@@ -6,9 +6,22 @@ import logo from '../../../assets/programmer.png';
 
 import './style.scss';
 
-export default ({section}) => {
+export default ({section, history}) => {
   return (
     <>
+      <svg
+        viewBox='0 0 5 5'
+        preserveAspectRatio='none'
+        width='100vw'
+        height='100vh'
+        style={{position: 'absolute', zIndex: -1}}>
+        {/* https://css-tricks.com/svg-line-animation-works/ */}
+        <polyline
+          points='4,4 1,4 1,5'
+          vectorEffect='non-scaling-stroke'
+          style={{stroke: '#222', fill: 'none', strokeWidth: 6}}
+        />
+      </svg>
       <div className={'apps-container'}>
         <a
           target={'_blank'}
@@ -65,7 +78,13 @@ export default ({section}) => {
           <div>I'm John.</div>
         </div>
       </div>
-      <div className={'bottom-message'}>👇 Introduce me to your codebase</div>
+      <div
+        className={'bottom-message'}
+        onClick={() => {
+          history.push('/contact');
+        }}>
+        👇 Introduce me to your codebase
+      </div>
       <div className={'social-media-container'}>
         <a
           title={'github'}

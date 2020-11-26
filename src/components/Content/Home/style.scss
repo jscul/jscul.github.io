@@ -3,12 +3,14 @@
   grid-row: 1/2;
 
   .center-content {
-    grid-column: 2/3;
-    grid-row: 2/3;
+    grid-column: 1/5;
+    grid-row: 1/5;
+    align-self: end;
     display: flex;
     white-space: nowrap;
     font-size: 42px;
     position: relative;
+    justify-content: flex-end;
 
     .center-text {
       position: absolute;
@@ -36,28 +38,31 @@
     align-items: center;
 
     .social-media-link {
-      color: #222;
+      color: #181818;
       padding: 4px 6px;
 
-      .social-media-logo {
-        width: 1.2em;
-        height: 1.2em;
+      svg {
+        width: 1.4em;
+        height: 1.4em;
       }
     }
   }
 
   .social-media-container {
-    grid-row: 3/4;
-    grid-column: 3/4;
+    grid-row: 5/6;
+    grid-column: 5/6;
     align-self: end;
     justify-self: end;
-    padding: 0 24px 16px 0;
+    padding: 0 24px 32px 0;
 
     display: flex;
+    align-items: flex-end;
 
     .social-media-link {
       color: white;
-      padding: 4px 8px;
+      padding: 4px 8px 0 8px;
+      width: 1em;
+      height: 1em;
 
       .social-media-logo {
         width: 1em;
@@ -67,11 +72,14 @@
   }
 
   .bottom-message {
-    grid-row: 3/4;
-    grid-column: 2/3;
+    cursor: pointer;
+    margin-left: -12px;
+    grid-row: 5/6;
+    grid-column: 2/5;
     align-self: end;
     justify-self: bottom;
-    padding-bottom: 32px;
+    padding: 15px 0 32px 0;
     font-size: 24px;
+    background-color: #101011;
   }
 }

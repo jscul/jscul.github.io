@@ -3,6 +3,11 @@ section {
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  position: relative;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+section * {
+  overflow: hidden;
 }

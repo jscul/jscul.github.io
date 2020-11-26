@@ -29,7 +29,6 @@ export default ({section}) => {
             serverless functions to create intuitive user experiences and meet
             client needs. Currently programming at Dogtown Media.
           </p>
-          <p>Software Development is a comittment to learning.</p>
         </div>
       </div>
     </>

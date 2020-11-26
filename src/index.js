@@ -9,7 +9,7 @@ import {HashRouter as Router, Route} from 'react-router-dom';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Route path={'/:page?'} component={App} />
+      <Route path={'/'} component={App} />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,34 +1,30 @@
 import React, {Fragment, useEffect} from 'react';
 
-import Home from './Home';
-import About from './About';
-import Experience from './Experience';
-import Work from './Work';
-import Contact from './Contact';
-
 import './style.scss';
 
-const _sections = {
-  home: Home,
-  about: About,
-  experience: Experience,
-  work: Work,
-  contact: Contact,
-};
-
-export default ({page, sections}) => {
+export default ({history, page, sections}) => {
   useEffect(() => {
-    document
-      .getElementById(`${page || 'home'}-page`)
-      .scrollIntoView({behavior: 'smooth'});
+    const el = document.getElementById(`${page}-page`);
+    if (el) el.scrollIntoView({behavior: 'smooth'});
+  }, [page]);
+
+  useEffect(() => {
+    const resize = e => {
+      const el = document.getElementById(`${page}-page`);
+      if (el) el.scrollIntoView({});
+    };
+    window.addEventListener('resize', resize);
+    return () => {
+      window.removeEventListener('resize', resize);
+    };
   }, [page]);
 
   // return an array of grid sections
   return sections.map((section, i) => {
-    const Section = _sections[section.name];
+    const Section = section.component;
     return (
-      <section id={`${section.name}-page`}>
-        <Section section={section} />
+      <section id={`${section.id}-page`} style={section.style}>
+        <Section history={history} section={section} />
       </section>
     );
   });

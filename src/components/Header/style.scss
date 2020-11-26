@@ -7,7 +7,6 @@
   right: 0;
   z-index: 100;
 
-  background-color: $eerie-black;
   height: $header-height;
   padding: 0 24px;
 
@@ -42,6 +41,7 @@
     align-items: center;
     color: $white;
     font-size: 16px;
+    white-space: nowrap;
   }
 
   a {

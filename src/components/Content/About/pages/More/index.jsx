@@ -2,9 +2,6 @@ import React from 'react';
 
 import {NavLink} from 'react-router-dom';
 
-import logo from '../../../assets/programmer.png';
-import mountains from '../../../assets/mountains.svg';
-
 import './style.scss';
 
 export default ({section}) => {
@@ -17,13 +14,7 @@ export default ({section}) => {
         height='100vh'
         style={{position: 'absolute', zIndex: -1}}>
         <polyline
-          points='1,0 1,.5 4.5,.5 4.5,2 5,2'
-          strokeLinecap='round'
-          vectorEffect='non-scaling-stroke'
-          style={{stroke: '#222', fill: 'none', strokeWidth: 4}}
-        />
-        <polyline
-          points='5,3 4.5,3 4.5,5'
+          points='0,2 1,2 1,1 4,1 4,2 4,3 4,4 1,4 1,3 0,3'
           strokeLinecap='round'
           vectorEffect='non-scaling-stroke'
           style={{stroke: '#222', fill: 'none', strokeWidth: 4}}

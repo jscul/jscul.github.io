@@ -9,46 +9,79 @@ import Content from './components/Content';
 
 import './app.scss';
 
+import Home from './components/Content/Home';
+import About from './components/Content/About';
+import AboutMore from './components/Content/About/pages/More';
+import Experience from './components/Content/Experience';
+import Portfolio from './components/Content/Portfolio';
+import Contact from './components/Content/Contact';
+
 const sections = [
   {
-    name: 'home',
+    id: 'home',
+    component: Home,
+    next: '/about',
     path: '/',
-    next: 'about',
+    availableFrom: ['about', 'experience', 'portfolio', 'contact'],
   },
   {
-    name: 'about',
-    next: 'experience',
+    id: 'about',
+    component: About,
+    next: '/experience',
     previous: '/',
+    availableFrom: [],
   },
   {
-    name: 'about',
-    next: 'experience',
-    previous: '/',
+    id: 'about-more',
+    component: AboutMore,
+    path: '/about/more',
+    previous: '/about',
+    next: '/about',
+    style: {
+      'grid-column': '2/3',
+      'grid-row': '2/3',
+    },
+    availableFrom: [],
   },
   {
-    name: 'experience',
-    next: 'work',
-    previous: 'about',
+    id: 'experience',
+    component: Experience,
+    next: '/portfolio',
+    previous: '/about',
   },
   {
-    name: 'work',
-    next: 'contact',
-    previous: 'experience',
+    id: 'portfolio',
+    component: Portfolio,
+    next: '/contact',
+    previous: '/experience',
+    availableFrom: [],
   },
   {
-    name: 'contact',
-    previous: 'work',
+    id: 'contact',
+    component: Contact,
+    previous: '/portfolio',
+    availableFrom: [],
   },
 ];
 
-export default ({match, history}) => {
-  const {page} = match.params;
+export default ({history, match}) => {
+  let page = history.location.pathname;
+  page =
+    page === '/'
+      ? 'home'
+      : page
+          .split('/')
+          .filter(s => s)
+          .join('-');
 
+  const freeScroll = useState(false);
+
+  const [initialPageLoad, setInitialPageLoad] = useState(true);
   const isScrolling = useRef(false);
   const scrollingDebounced = useRef(
     debounce(e => {
       isScrolling.current = false;
-    }, 300)
+    }, 60)
   );
   useEffect(() => {
     window.addEventListener('scroll', scrollingDebounced.current, {
@@ -60,19 +93,19 @@ export default ({match, history}) => {
 
   const scrollTime = useRef(Date.now());
   useEffect(() => {
-    isScrolling.current = true;
+    isScrolling.current = !initialPageLoad;
     const wheel = e => {
       e.preventDefault();
       const now = Date.now();
-      if (now - scrollTime.current < 200 || isScrolling.current) return false;
+      if (now - scrollTime.current < 60 || isScrolling.current) return false;
       scrollTime.current = now;
       const section = sections.find(
-        section => section.name === (page || 'home')
+        section =>
+          section.id === document.querySelector('.active').firstChild.id
       );
-      if (e.deltaY > 0 && section.next) {
+      if (section && e.deltaY > 0 && section.next) {
         history.push(section.next);
-      } else if (e.deltaY < 0 && section.previous) {
-        history.push(section.previous);
+      } else if (section && e.deltaY < 0 && section.previous) {
         history.push(section.previous);
       }
     };
@@ -80,6 +113,7 @@ export default ({match, history}) => {
       passive: false,
       capture: 'bubble',
     });
+    setInitialPageLoad(false);
     return () =>
       window.removeEventListener('wheel', wheel, {
         passive: false,
@@ -91,7 +125,7 @@ export default ({match, history}) => {
     <>
       <Header page={page} sections={sections} />
       <div className={'content'}>
-        <Content page={page} sections={sections} />
+        <Content page={page} history={history} sections={sections} />
       </div>
     </>
   );

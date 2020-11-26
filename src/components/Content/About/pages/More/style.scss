@@ -1,4 +1,4 @@
-#about-page {
+#about-more-page {
   grid-column: 1/2;
   grid-row: 2/3;
 
@@ -16,7 +16,6 @@
     position: relative;
     align-self: center;
     padding: 64px;
-    padding-left: 0;
 
     .keyword {
       color: orangered;
@@ -56,5 +55,14 @@
         height: 1.2em;
       }
     }
+  }
+
+  .bottom-message {
+    grid-row: 3/4;
+    grid-column: 2/3;
+    align-self: end;
+    justify-self: bottom;
+    padding-bottom: 32px;
+    font-size: 24px;
   }
 }
