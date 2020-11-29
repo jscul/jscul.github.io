@@ -7,6 +7,10 @@
   right: 0;
   z-index: 100;
 
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
+
   height: $header-height;
   padding: 0 24px;
 
@@ -19,6 +23,7 @@
     color: $white;
     width: 39.391px;
     transition: top 0.3s ease, left 0.3s ease, width 0.3s ease;
+    font-size: 1.6rem;
 
     .left-bracket,
     .right-bracket {
@@ -40,7 +45,7 @@
     flex-direction: row;
     align-items: center;
     color: $white;
-    font-size: 16px;
+    font-size: 1.6rem;
     white-space: nowrap;
   }
 

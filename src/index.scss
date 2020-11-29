@@ -4,8 +4,11 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  // zoom: 0.8;
+  font-size: 10px; // for rem units
+  @media only screen and (max-width: 800px) {
+    // font-size: 8px;
+  }
+  color: $white;
 }
 
 body {
@@ -25,4 +28,10 @@ a {
 
 .stretch {
   flex: 1;
+}
+
+.material-icons {
+  line-height: inherit;
+  color: inherit;
+  font-size: inherit;
 }

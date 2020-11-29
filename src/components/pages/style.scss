@@ -1,0 +1,17 @@
+section {
+  display: grid;
+  width: calc(min(960px, 100%));
+  grid-template-columns: repeat(5, 1fr);
+
+  // by default each section has 5 grid rows
+  // change in page section if need more height
+  grid-template-rows: repeat(5, 20vh);
+
+  // center align
+  margin: auto;
+
+  & > * {
+    // keep grid neat
+    overflow: hidden;
+  }
+}

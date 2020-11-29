@@ -1,0 +1,43 @@
+#contact-page {
+  grid-template-rows: repeat(5, 20vh);
+
+  .title {
+    grid-column: 2/4;
+    grid-row: 2/4;
+    font-size: 1.6em;
+    padding: 12px 0;
+  }
+
+  .center-content {
+    grid-column: 2/5;
+    grid-row: 2/5;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    position: relative;
+    align-self: center;
+    justify-self: center;
+    padding: 16px;
+
+    div {
+      display: flex;
+
+      label {
+        flex: 1;
+      }
+
+      input,
+      textarea {
+        margin: 6px 12px;
+        flex: 2;
+        resize: none;
+        font-size: 16px;
+      }
+    }
+
+    .center-text {
+      position: absolute;
+      right: -24px;
+    }
+  }
+}

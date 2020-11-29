@@ -1,0 +1,25 @@
+#portfolio-page {
+  grid-template-rows: repeat(5, 20vh);
+
+  .title {
+    font-size: 36px;
+    grid-column: 2/4;
+    grid-row: 2/4;
+  }
+
+  .center-content {
+    grid-column: 2/4;
+    grid-row: 2/4;
+    display: flex;
+    font-size: 18px;
+    position: relative;
+    align-self: start;
+    justify-self: start;
+    padding: 16px;
+
+    .center-text {
+      position: absolute;
+      right: -24px;
+    }
+  }
+}
