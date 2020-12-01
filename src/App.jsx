@@ -13,9 +13,6 @@ import Home from './components/pages/Home';
 import About from './components/pages/About';
 
 import Experience from './components/pages/Experience';
-import Experience1 from './components/pages/Experience/pages/1';
-import Experience2 from './components/pages/Experience/pages/2';
-import Experience3 from './components/pages/Experience/pages/3';
 
 import Portfolio from './components/pages/Portfolio';
 import Portfolio1 from './components/pages/Portfolio/pages/1';

@@ -75,6 +75,8 @@ export default ({page, sections}) => {
 
   return (
     <header className='header' ref={header}>
+      <div className='fade-in' />
+
       <div className={'brackets'} ref={brackets}>
         <div className={'left-bracket'}>[</div>
         <div className={'right-bracket'}>]</div>

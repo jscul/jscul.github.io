@@ -23,16 +23,16 @@ export default ({section}) => {
   }, [seenNodes]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!autoscroll) return clearInterval(interval);
-      if (seenNodes.length === 0) return;
-      const id = seenNodes[0];
-      onClick({target: {id}}, false);
-      setSeenNodes(seenNodes.slice(1));
-    }, 3000);
-    return () => {
-      clearInterval(interval);
-    };
+    // const interval = setInterval(() => {
+    //   if (!autoscroll) return clearInterval(interval);
+    //   if (seenNodes.length === 0) return;
+    //   const id = seenNodes[0];
+    //   onClick({target: {id}}, false);
+    //   setSeenNodes(seenNodes.slice(1));
+    // }, 3000);
+    // return () => {
+    //   clearInterval(interval);
+    // };
   }, [autoscroll, seenNodes]);
 
   const onClick = (e, shouldClearAutoscroll = true) => {
@@ -51,14 +51,14 @@ export default ({section}) => {
 
   return (
     <>
-      <div className={'center-content'}>
+      <div className={`center-content${hoveringOn ? ` ${hoveringOn}` : ''}`}>
         <p>
           Hello! I'm John, a software developer based out of Los Angeles, CA.
         </p>
         <p>
           I have 4+ years of extensive professional experience and collaborate
           with designers, R&D teams, and other developers to create{' '}
-          <i>pixel-perfect design</i> coupled with <i>robust servers</i>,{' '}
+          <i>intuitive design</i> coupled with <i>robust servers</i>,{' '}
           <i>microservices</i>, and <i>serverless</i> to meet client objectives,
           client needs, and data strategy objectives.
         </p>
@@ -74,7 +74,7 @@ export default ({section}) => {
       <div className={'skills-section'}>
         <div className={'title'}>Languages</div>
         <div className={'item clickable'} id={'javascript'} onClick={onClick}>
-          JavaScript (ES6)
+          👉🏻 JavaScript (ES6)
         </div>
         <div className={'item clickable'} id={'python'} onClick={onClick}>
           Python
@@ -88,7 +88,7 @@ export default ({section}) => {
           </span>{' '}
           /{' '}
           <span id={'scss'} className={'clickable'} onClick={onClick}>
-            Sass
+            Sass 👈🏼
           </span>
         </div>
         <div className={'item clickable'} id={'sql'} onClick={onClick}>
@@ -156,6 +156,9 @@ export default ({section}) => {
           <span id={'github'} className={'clickable'} onClick={onClick}>
             GitHub
           </span>
+        </div>
+        <div className={'item clickable'} id={'vscode'} onClick={onClick}>
+          VS Code
         </div>
       </div>
 

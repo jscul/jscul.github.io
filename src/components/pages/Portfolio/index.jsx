@@ -9,9 +9,9 @@ export default ({section}) => {
     <>
       <div className={'center-content'}>
         <ol style={{}}>
-          <li>eczemawise.org</li>
-          <li>Owlsite</li>
-          <li>Test</li>
+          <li>eczemawise.org (the production stuff)</li>
+          <li>Owlsite (The fun stuff)</li>
+          <li>Test (internal tools)</li>
         </ol>
       </div>
     </>
