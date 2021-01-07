@@ -74,7 +74,7 @@ export default ({section}) => {
       <div className={'skills-section'}>
         <div className={'title'}>Languages</div>
         <div className={'item clickable'} id={'javascript'} onClick={onClick}>
-          👉🏻 JavaScript (ES6)
+          JavaScript (ES6)
         </div>
         <div className={'item clickable'} id={'python'} onClick={onClick}>
           Python
@@ -88,7 +88,7 @@ export default ({section}) => {
           </span>{' '}
           /{' '}
           <span id={'scss'} className={'clickable'} onClick={onClick}>
-            Sass 👈🏼
+            Sass
           </span>
         </div>
         <div className={'item clickable'} id={'sql'} onClick={onClick}>

@@ -99,6 +99,8 @@
 
     display: flex;
     overflow-x: scroll;
+    overflow-y: visible;
+
     &::-webkit-scrollbar {
       width: 0px; /* Remove scrollbar space */
       height: 0px; /* Remove scrollbar space */
@@ -113,15 +115,15 @@
       box-sizing: border-box;
 
       &.selected {
-        img::before {
-          content: '👇';
+        position: relative;
+        &::before {
+          content: '👇🏼';
+          background-color: red;
           position: absolute;
           font-size: 18px;
-          bottom: 100%;
+          top: 0;
           left: 50%;
-          transform: translate(-50%);
-          width: 100px;
-          height: 100px;
+          transform: translate(-50%, -100%);
         }
       }
 

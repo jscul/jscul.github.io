@@ -2,6 +2,8 @@ import React, {useState, useRef, useEffect} from 'react';
 
 import {NavLink} from 'react-router-dom';
 
+import LocalLink from '../LocalLink';
+
 import './style.scss';
 
 export default ({page, sections}) => {
@@ -61,18 +63,6 @@ export default ({page, sections}) => {
     );
   };
 
-  const onClick = e => {
-    e.preventDefault();
-    // get first child, id is on the span for the bracket movement
-    let id = e.target.firstChild.id;
-    if (!id) id = e.target.id;
-    const el = document.getElementById(`${id}-page`);
-    if (el)
-      el.scrollIntoView({
-        behavior: 'smooth',
-      });
-  };
-
   return (
     <header className='header' ref={header}>
       <div className='fade-in' />
@@ -82,82 +72,42 @@ export default ({page, sections}) => {
         <div className={'right-bracket'}>]</div>
       </div>
 
-      <NavLink
-        to='/'
-        onClick={onClick}
-        exact
-        className={'link'}
-        draggable='false'>
+      <LocalLink to='/' exact className={'link'} draggable='false'>
         <span id={'home'}>home</span>
-      </NavLink>
+      </LocalLink>
 
       <div className='stretch'></div>
 
-      <NavLink
-        to='/about'
-        onClick={onClick}
-        exact
-        className={'link'}
-        draggable='false'>
+      <LocalLink to='/about' exact className={'link'} draggable='false'>
         <span id={'about'}>about</span>
-      </NavLink>
+      </LocalLink>
 
       <span>-></span>
 
-      <NavLink
-        to='/experience'
-        onClick={onClick}
-        exact
-        className={'link'}
-        draggable='false'>
+      <LocalLink to='/experience' exact className={'link'} draggable='false'>
         <span id={'experience'}>experience</span>
-      </NavLink>
+      </LocalLink>
 
       <span>-></span>
 
-      <NavLink
-        to='/portfolio'
-        onClick={onClick}
-        exact
-        className={'link'}
-        draggable='false'>
+      <LocalLink to='/portfolio' exact className={'link'} draggable='false'>
         <span id={'portfolio'}>portfolio</span>
-      </NavLink>
-      <NavLink
-        to='/portfolio/1'
-        onClick={onClick}
-        exact
-        className={'link'}
-        draggable='false'>
+      </LocalLink>
+      <LocalLink to='/portfolio/1' exact className={'link'} draggable='false'>
         <span id={'portfolio-1'}>1</span>
-      </NavLink>
-      <NavLink
-        to='/portfolio/2'
-        onClick={onClick}
-        exact
-        className={'link'}
-        draggable='false'>
+      </LocalLink>
+      <LocalLink to='/portfolio/2' exact className={'link'} draggable='false'>
         <span id={'portfolio-2'}>2</span>
-      </NavLink>
-      <NavLink
-        to='/portfolio/3'
-        onClick={onClick}
-        exact
-        className={'link'}
-        draggable='false'>
+      </LocalLink>
+      <LocalLink to='/portfolio/3' exact className={'link'} draggable='false'>
         <span id={'portfolio-3'}>3</span>
-      </NavLink>
+      </LocalLink>
 
       <span>-></span>
 
-      <NavLink
-        to='/contact'
-        onClick={onClick}
-        exact
-        className={'link'}
-        draggable='false'>
+      <LocalLink to='/contact' exact className={'link'} draggable='false'>
         <span id={'contact'}>contact</span>
-      </NavLink>
+      </LocalLink>
     </header>
   );
 };

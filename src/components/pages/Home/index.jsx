@@ -3,6 +3,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 import logo from '../../../assets/programmer.png';
+import LocalLink from '../../LocalLink';
 
 import './style.scss';
 
@@ -64,13 +65,14 @@ export default ({section, history}) => {
         </svg>
         <img src={logo} className='logo' alt='logo' />
       </div>
-      <div
+      <LocalLink
+        to={'/contact'}
+        id={'contact'}
         className={'bottom-message'}
-        onClick={() => {
-          history.push('/contact');
-        }}>
-        👇 Introduce me to your codebase
-      </div>
+        exact
+        draggable='false'>
+        👇🏼 Introduce me to your codebase
+      </LocalLink>
       <div className={'social-media-container'}>
         <a
           title={'github'}
