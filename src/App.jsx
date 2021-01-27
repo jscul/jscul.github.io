@@ -1,5 +1,7 @@
 import React, {Fragment, useEffect, useRef, useState} from 'react';
 
+import Game from './components/Game';
+
 import {Route} from 'react-router-dom';
 
 import {throttle, debounce} from 'lodash';
@@ -27,7 +29,6 @@ const sections = [
     component: Home,
     next: '/about',
     path: '/',
-    availableFrom: ['about', 'experience', 'portfolio', 'contact'],
   },
   {
     id: 'about',
@@ -35,7 +36,6 @@ const sections = [
     component: About,
     next: '/experience',
     previous: '/',
-    availableFrom: [],
   },
   {
     id: 'experience',
@@ -50,13 +50,11 @@ const sections = [
     component: Portfolio,
     next: '/contact',
     previous: '/experience',
-    availableFrom: [],
   },
   {
     id: 'portfolio-1',
     path: '/portfolio/1',
     component: Portfolio1,
-    style: {},
     next: '/portfolio/2',
     previous: '/portfolio',
   },
@@ -79,7 +77,6 @@ const sections = [
     path: '/contact',
     component: Contact,
     previous: '/portfolio',
-    availableFrom: [],
   },
 ];
 
@@ -92,6 +89,8 @@ export default ({history, match}) => {
           .split('/')
           .filter(s => s)
           .join('-');
+
+  if (page === 'game') return <Game />;
 
   return (
     <>

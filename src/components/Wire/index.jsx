@@ -29,32 +29,26 @@ export default ({}) => {
     if (dataLine.current) setTotalLength(dataLine.current.getTotalLength());
   }, [dataLine]);
   return (
-    true ||
-    null || (
-      <svg
-        className={'circuit'}
-        viewBox='0 0 5 5'
-        preserveAspectRatio='none'
-        style={{}}>
-        <g className={'send'}>
-          <path
-            className={'wire'}
-            d={points}
-            vectorEffect='non-scaling-stroke'
-          />
-          <path
-            ref={dataLine}
-            className={'data'}
-            d={points}
-            vectorEffect='non-scaling-stroke'
-            style={{
-              strokeDasharray: `${4} ${dashSpacing}`,
-              strokeDashoffset: `${totalLength + totalLength * dashSpacing}`,
-              animation: `dash ${totalLength * 2}s linear forwards infinite`,
-            }}
-          />
-        </g>
-        {/* <g className={'recieve'} transform='translate(.05, .06)'>
+    <svg
+      className={'circuit'}
+      viewBox='0 0 5 5'
+      preserveAspectRatio='none'
+      style={{}}>
+      <g className={'send'}>
+        <path className={'wire'} d={points} vectorEffect='non-scaling-stroke' />
+        <path
+          ref={dataLine}
+          className={'data'}
+          d={points}
+          vectorEffect='non-scaling-stroke'
+          style={{
+            strokeDasharray: `${4} ${dashSpacing}`,
+            strokeDashoffset: `${totalLength + totalLength * dashSpacing}`,
+            animation: `dash ${totalLength * 2}s linear forwards infinite`,
+          }}
+        />
+      </g>
+      {/* <g className={'recieve'} transform='translate(.05, .06)'>
         <path className={'wire'} d={points} vectorEffect='non-scaling-stroke' />
         <path
           ref={dataLine}
@@ -68,7 +62,6 @@ export default ({}) => {
           }}
         />
       </g> */}
-      </svg>
-    )
+    </svg>
   );
 };

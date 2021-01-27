@@ -1,7 +1,7 @@
 section {
   display: grid;
   width: calc(min(960px, 100%));
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 20%);
 
   // by default each section has 5 grid rows
   // change in page section if need more height
@@ -9,8 +9,4 @@ section {
 
   // center align
   margin: auto;
-
-  & > * {
-    // keep grid neat
-  }
 }
