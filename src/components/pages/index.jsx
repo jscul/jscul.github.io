@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useRef} from 'react';
+import {Fragment, useEffect, useRef} from 'react';
 
 import Wire from '../Wire';
 

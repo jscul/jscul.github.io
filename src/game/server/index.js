@@ -1,7 +1,8 @@
 // https://www.digitalocean.com/community/tutorials/how-to-develop-a-node-js-tcp-server-application-using-pm2-and-nginx-on-ubuntu-16-04
 
 import Engine from './Engine';
-import {isometric} from './lib';
+import {isometric} from '../shared';
+import Network from './network';
 
 // CONSTS
 
@@ -178,7 +179,7 @@ class Entity extends Movable {
     return true;
   }
 
-  input(input) {
+  receive(input) {
     Object.assign(this, input);
   }
 }
@@ -197,9 +198,9 @@ class Room {
   update() {}
 }
 
-class Game {
-  constructor(emit) {
-    this.emit = emit;
+export default class Server {
+  constructor() {
+    this.network = new Network(this);
 
     this.i = 0;
 
@@ -214,12 +215,12 @@ class Game {
   }
 
   // request from client to update controlled entity
-  input(controller) {
+  receive(input) {
     // find entity being controlled and handle
-    this.players['Jf349q0QNHTn'].input(controller);
+    this.players['Jf349q0QNHTn'].receive(input);
   }
 
-  run() {
+  start() {
     this.engine.run();
   }
 
@@ -239,10 +240,6 @@ class Game {
         }
       }
     }
-    this.emit(ret);
+    this.network.send(ret);
   }
 }
-
-export default Game;
-
-// -------------- CLIENT

@@ -2,9 +2,9 @@ import {useRef, useEffect} from 'react';
 
 import * as PIXI from 'pixi.js';
 
-import Game from './Game';
+import Network from './network';
 
-import {toIsometric} from './lib';
+import {toIsometric} from '../shared';
 
 PIXI.utils.skipHello();
 PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
@@ -25,7 +25,7 @@ const placeAt = (sprite, x, y, z) => {
 };
 
 class Controller {
-  constructor(tick) {
+  constructor() {
     this.u = false;
     this.d = false;
     this.r = false;
@@ -74,10 +74,6 @@ class Controller {
           break;
       }
     });
-
-    setInterval(() => {
-      tick(this);
-    }, 1000 / 20);
   }
 }
 
@@ -91,31 +87,67 @@ class Entity {
   }
 }
 
-class Client {
+export class Client {
   width = 640;
   height = 360;
 
+  static state = {};
+
+  receive(state) {
+    const toLoad = [];
+
+    for (const id in state) {
+      const entity = state[id];
+
+      if (Object.hasOwnProperty.call(this.state, id)) {
+        Object.assign(this.state[id], entity);
+      } else {
+        this.state[id] = new Entity(entity);
+      }
+
+      entity.sprite.forEach(sprite => {
+        // are we loading the resource already?
+        if (!Object.hasOwnProperty.call(this.resources, sprite)) {
+          this.app.loader.add(sprite, `${sprite}.png`);
+          toLoad.push(sprite);
+          this.resources[sprite] = false;
+        }
+      });
+    }
+
+    // load the textures we need
+    if (toLoad.length) {
+      this.app.loader.load((loader, resources) => {
+        Object.assign(this.resources, resources);
+      });
+    }
+  }
+
   constructor(view) {
-    const app = new PIXI.Application({
+    this.resources = {};
+    this.state = {};
+    this.following = null;
+    this.controller = null;
+    this.view = view;
+    this.network = new Network(this);
+  }
+
+  start() {
+    // player controller (only need one instance)
+    this.controller = new Controller();
+
+    this.app = new PIXI.Application({
       width: this.width,
       height: this.height,
-      view,
+      view: this.view,
     });
 
-    // textures
-    this.resources = {};
-
-    // current game state (updates with server ticks)
-    this.state = {};
-
-    this.following = null;
-
-    const centerX = Math.round(app.renderer.width / 2),
-      centerY = Math.round(app.renderer.height / 2);
+    const centerX = Math.round(this.app.renderer.width / 2),
+      centerY = Math.round(this.app.renderer.height / 2);
 
     // stage contains all other containers
     const stage = new PIXI.Container();
-    app.stage.addChild(stage);
+    this.app.stage.addChild(stage);
     stage.x = centerX;
     stage.y = centerY;
 
@@ -171,38 +203,7 @@ class Client {
     container.x = centerX;
     container.y = centerY;
 
-    // callback is emit state from server (texture dependencies)
-    const server = new Game(state => {
-      const toLoad = [];
-
-      for (const id in state) {
-        const entity = state[id];
-
-        if (Object.hasOwnProperty.call(this.state, id)) {
-          Object.assign(this.state[id], entity);
-        } else {
-          this.state[id] = new Entity(entity);
-        }
-
-        entity.sprite.forEach(sprite => {
-          // are we loading the resource already?
-          if (!Object.hasOwnProperty.call(this.resources, sprite)) {
-            app.loader.add(sprite, `${sprite}.png`);
-            toLoad.push(sprite);
-            this.resources[sprite] = false;
-          }
-        });
-      }
-
-      // load the textures we need
-      if (toLoad.length) {
-        app.loader.load((loader, resources) => {
-          Object.assign(this.resources, resources);
-        });
-      }
-    });
-
-    app.ticker.add(delta => {
+    this.app.ticker.add(delta => {
       for (const id in this.state) {
         const entity = this.state[id];
 
@@ -233,24 +234,26 @@ class Client {
       }
     });
 
-    app.ticker.add(delta => {
+    this.app.ticker.add(delta => {
       if (this.following) {
         stage.x = -this.following.x;
         stage.y = -this.following.y;
       }
     });
 
-    server.run();
-    const controller = new Controller(controller => {
-      server.input(controller);
-    });
+    setInterval(() => {
+      this.network.send(JSON.stringify(this.controller));
+    }, 1000 / 20);
   }
 }
 
 export default ({}) => {
   const view = useRef(null);
   useEffect(() => {
-    if (view.current) new Client(view.current);
+    if (view.current) {
+      const game = new Client(view.current);
+      game.start();
+    }
   }, [view]);
   return (
     <div>

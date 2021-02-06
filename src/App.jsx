@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useRef, useState} from 'react';
 
-import Game from './components/Game';
+import Game from './game/Client';
+import Server from './game/server';
 
 import {Route} from 'react-router-dom';
 
@@ -90,7 +91,11 @@ export default ({history, match}) => {
           .filter(s => s)
           .join('-');
 
-  if (page === 'game') return <Game />;
+  if (page === 'game') {
+    const server = new Server();
+    server.start();
+    return <Game />;
+  }
 
   return (
     <>
