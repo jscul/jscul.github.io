@@ -7,22 +7,21 @@ import {Route} from 'react-router-dom';
 
 import {throttle, debounce} from 'lodash';
 
-import Header from './components/Header';
-import Content from './components/pages';
+import Overlay from 'components/Overlay';
+import Content from 'Content';
 
-import './app.scss';
+import Home from 'Content/Home';
 
-import Home from './components/pages/Home';
-import About from './components/pages/About';
+import About from 'Content/About';
 
-import Experience from './components/pages/Experience';
+import Experience from 'Content/Experience';
 
-import Portfolio from './components/pages/Portfolio';
-import Portfolio1 from './components/pages/Portfolio/pages/1';
-import Portfolio2 from './components/pages/Portfolio/pages/2';
-import Portfolio3 from './components/pages/Portfolio/pages/3';
+import Portfolio from 'Content/Portfolio';
+import Portfolio1 from 'Content/Portfolio/pages/1';
+import Portfolio2 from 'Content/Portfolio/pages/2';
+import Portfolio3 from 'Content/Portfolio/pages/3';
 
-import Contact from './components/pages/Contact';
+import Contact from 'Content/Contact';
 
 const sections = [
   {
@@ -88,7 +87,7 @@ export default ({history, match}) => {
       ? 'home'
       : page
           .split('/')
-          .filter(s => s)
+          .filter((s) => s)
           .join('-');
 
   if (page === 'game') {
@@ -99,10 +98,8 @@ export default ({history, match}) => {
 
   return (
     <>
-      <Header page={page} sections={sections} />
-      <div className={'content'}>
-        <Content page={page} history={history} sections={sections} />
-      </div>
+      <Overlay page={page} sections={sections} />
+      <Content page={page} history={history} sections={sections} />
     </>
   );
 };

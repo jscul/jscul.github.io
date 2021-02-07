@@ -1,0 +1,24 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+
+  pointer-events: none;
+
+  width: calc(min(960px, 100%));
+  grid-template-columns: repeat(5, 20%);
+
+  // by default each section has 5 grid rows
+  // change in page section if need more height
+  grid-template-rows: repeat(5, 20vh);
+
+  // center align
+  margin: auto;
+
+  > * {
+    pointer-events: all;
+  }
+}

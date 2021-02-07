@@ -1,21 +1,30 @@
-import {NavLink} from 'react-router-dom';
+import {useState, useEffect} from 'react';
 
-const onClick = e => {
-  e.preventDefault();
-  // get first child, id is on the span for the bracket movement
-  let id = e.target.firstChild && e.target.firstChild.id;
-  if (!id) id = e.target.id;
-  const el = document.getElementById(`${id}-page`);
-  if (el)
-    el.scrollIntoView({
-      behavior: 'smooth',
-    });
-};
+import {NavLink, useHistory} from 'react-router-dom';
 
-export default props => {
+export default ({find, to, block = 'start', children, ...props}) => {
+  const history = useHistory();
+
+  const onClick = (e) => {
+    // let scroll listener handle updating the url
+    e.preventDefault();
+
+    if (to) history.push(to);
+
+    if (find) {
+      const el = document.getElementById(find);
+      if (el) {
+        el.scrollIntoView({
+          behavior: 'smooth',
+          block,
+        });
+      }
+    }
+  };
+
   return (
-    <NavLink {...props} onClick={onClick}>
-      {props.children}
+    <NavLink to={to} {...props} onClick={onClick}>
+      {children}
     </NavLink>
   );
 };

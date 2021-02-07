@@ -28,6 +28,7 @@ export default ({}) => {
   useEffect(() => {
     if (dataLine.current) setTotalLength(dataLine.current.getTotalLength());
   }, [dataLine]);
+  return null;
   return (
     <svg
       className={'circuit'}

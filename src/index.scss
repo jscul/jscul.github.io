@@ -1,5 +1,16 @@
 @import 'global';
 
+body::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: $eerie-black; /* color of the tracking area */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: $paradise-pink; /* color of the scroll thumb */
+  border: 3px solid $eerie-black; /* creates padding around scroll thumb */
+}
+
 html,
 body {
   margin: 0;
@@ -23,7 +34,6 @@ code {
 
 a {
   color: $caribbean-green;
-  text-decoration: none;
 }
 
 .stretch {

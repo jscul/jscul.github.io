@@ -1,0 +1,82 @@
+@import '../../../global';
+
+.header {
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
+
+  grid-column: 1/3;
+  grid-row: 1/2;
+
+  height: $header-height;
+  position: relative;
+  padding: 0 24px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  .brackets {
+    opacity: 0;
+    position: absolute;
+    z-index: 99;
+    color: $white;
+    transition: top 0.3s ease, left 0.3s ease, width 0.3s ease;
+    font-size: 1.6rem;
+
+    &.initial-load {
+      transition: none;
+    }
+
+    .left-bracket,
+    .right-bracket {
+      position: absolute;
+    }
+
+    .left-bracket {
+      right: 100%;
+    }
+
+    .right-bracket {
+      left: 100%;
+    }
+  }
+
+  a,
+  span {
+    z-index: 99;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: $white;
+    font-size: 1.6rem;
+    white-space: nowrap;
+  }
+
+  a {
+    padding: 0 12px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .fade-in {
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      rgba(16, 16, 17, 0) 0%,
+      rgba(16, 16, 17, 0.5) 20%,
+      rgba(16, 16, 17, 0.9) 40%,
+      rgba(16, 16, 17, 1) 80%,
+      rgba(16, 16, 17, 1) 100%
+    );
+  }
+}
