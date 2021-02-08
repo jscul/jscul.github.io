@@ -9,17 +9,17 @@ import './style.scss';
 
 export default ({section, history}) => {
   return (
-    <>
+    <section id={`${section.id}-page`} className={'page'}>
       <div className={'center-content'}>
         <img src={logo} className='logo' alt='logo' />
       </div>
       <LocalLink
         to={'/contact'}
-        id={'contact'}
+        find={'contact-page'}
         className={'bottom-message'}
         exact
         draggable='false'>
-        👇🏼 introduce me to your codebase
+        👇🏼 Introduce me to your codebase
       </LocalLink>
       <div className={'social-media-container'}>
         <a
@@ -88,6 +88,6 @@ export default ({section, history}) => {
           </svg>
         </a>
       </div>
-    </>
+    </section>
   );
 };

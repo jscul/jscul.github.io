@@ -6,15 +6,13 @@ import './style.scss';
 
 export default ({history, page, sections}) => {
   useEffect(() => {
-    const resize = (e) => {
-      const el = document.getElementById(`${page}-page`);
-      if (!el) console.error(`!el`);
-      if (el) el.scrollIntoView({});
-    };
-    window.addEventListener('resize', resize);
-    return () => {
-      window.removeEventListener('resize', resize);
-    };
+    // const resize = (e) => {
+    //   const el = document.getElementById(`${page}-page`);
+    //   if (!el) console.error(`!el`);
+    //   if (el) el.scrollIntoView({});
+    // };
+    // window.addEventListener('resize', resize);
+    // return () => window.removeEventListener('resize', resize);
   }, [page]);
 
   const getDistanceFromMiddle = (el) => {
@@ -23,7 +21,7 @@ export default ({history, page, sections}) => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', (e) => {
+    const scroll = (e) => {
       // const pages = document.querySelectorAll('.page');
       // let closest = null,
       //   distance = null;
@@ -35,12 +33,16 @@ export default ({history, page, sections}) => {
       //   }
       // }
       // if (closest) {
+      //   console.log(closest);
       //   const section = sections.find(
       //     (section) => section.id === closest.id.replace('-page', '')
       //   );
-      //   history.push(section.path);
+      //   if (section) history.push(section.path);
       // }
-    });
+    };
+
+    window.addEventListener('scroll', scroll);
+    return () => window.removeEventListener('scroll', scroll);
   }, []);
 
   // return an array of grid sections
@@ -48,11 +50,7 @@ export default ({history, page, sections}) => {
     <div className={'content'}>
       {sections.map((section, i) => {
         const Section = section.component;
-        return (
-          <section key={i} id={`${section.id}-page`} className={'page'}>
-            <Section history={history} section={section} />
-          </section>
-        );
+        return <Section key={i} history={history} section={section} />;
       })}
     </div>
   );

@@ -1,4 +1,4 @@
-import logos from 'assets/logos';
+import logos from 'assets/skills';
 
 export default Object.keys(logos).map((id) => {
   return {

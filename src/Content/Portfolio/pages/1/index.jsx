@@ -9,10 +9,13 @@ import './style.scss';
 export default ({section}) => {
   return (
     <>
-      <div className={'center-content'} style={{}}>
-        eczemawise.org
-        {/* <img src={image} width={400} alt='' /> */}
-      </div>
+      <section id={`${section.id}-page`} className={'page scroll-offset'}>
+        <h1>[1] eczemawise</h1>
+        <div className={'center-content'} style={{}}>
+          eczemawise.org
+          {/* <img src={image} width={400} alt='' /> */}
+        </div>
+      </section>
     </>
   );
 };

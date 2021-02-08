@@ -1,0 +1,168 @@
+#skills-page {
+  .skills {
+    display: flex;
+    flex-direction: row;
+
+    padding: 36px;
+
+    .skills-section {
+      text-align: center;
+      padding: 36px;
+
+      .title {
+        color: gray;
+        font-size: 1.4rem;
+        padding-bottom: 16px;
+      }
+
+      .item {
+        font-size: 1.6rem;
+        padding: 5px 0;
+        display: block;
+        color: #fff;
+        text-decoration: none;
+
+        &.active {
+          text-decoration: underline;
+        }
+      }
+
+      .clickable {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .skill-description {
+    width: 100%;
+    padding: 36px 64px;
+    padding: 32px 32px 64px 32px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    .skill-logo {
+      flex: 1;
+      padding-right: 46px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      img {
+        width: 86px;
+        height: auto;
+
+        animation: fadeIn ease 0.4s forwards;
+        opacity: 0;
+
+        &:nth-child(1) {
+          animation-delay: 0.2s;
+        }
+
+        &:nth-child(2) {
+          animation-delay: 0.4s;
+        }
+
+        &:nth-child(3) {
+          animation-delay: 0.6s;
+        }
+
+        &:nth-child(4) {
+          animation-delay: 0.8s;
+        }
+
+        & + img {
+          margin-top: 36px;
+        }
+
+        &:before {
+          position: absolute;
+          content: '';
+          top: 50%;
+          left: 50%;
+          transform: translate(-50% -50%);
+          width: 200px;
+          height: 200px;
+          background-color: #000;
+        }
+      }
+    }
+
+    .description {
+      flex: 3;
+      font-size: 16px;
+      overflow: hidden;
+
+      > * {
+        opacity: 0;
+        animation: fadeIn ease 4s forwards;
+      }
+
+      h1 {
+        font-size: 20px;
+        line-height: 24px;
+        margin: 0 0 12px 0;
+        padding: 0 0 12px 0;
+      }
+
+      p {
+      }
+
+      ul,
+      ol {
+        li {
+          font-size: 16px;
+          margin: 12px 0;
+          line-height: 22px;
+        }
+
+        color: #999;
+        em,
+        strong {
+          color: #fff;
+        }
+      }
+
+      sup {
+        font-size: 12px;
+        color: #999;
+      }
+
+      .local-link {
+        color: #fff;
+        text-decoration: none;
+        background-color: #222;
+        padding: 8px 16px;
+        margin: 24px 0;
+        border-radius: 200px;
+        display: inline-block;
+      }
+    }
+  }
+
+  .download-resume {
+    white-space: nowrap;
+
+    font-size: 1.7rem;
+    padding: 38px 0;
+
+    .material-icons {
+      vertical-align: middle;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

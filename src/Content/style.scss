@@ -9,14 +9,29 @@
   align-items: center;
 
   section {
-    min-height: 100vh;
     width: min(960px, 100%);
     margin: auto;
-    padding: 36px;
+    padding: 32px 32px 100px 32px;
+
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    &.scroll-offset {
+      margin-top: -100px;
+      padding-top: 100px;
+    }
+
+    > h1 {
+      text-align: left;
+      align-self: stretch;
+      font-weight: 100;
+      font-size: 32px;
+      color: #333;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #333;
+    }
   }
 }

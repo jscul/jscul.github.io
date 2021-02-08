@@ -7,9 +7,12 @@ import './style.scss';
 export default ({section}) => {
   return (
     <>
-      <div className={'center-content'} style={{}}>
-        OwlSite
-      </div>
+      <section id={`${section.id}-page`} className={'page scroll-offset'}>
+        <h1>[2] OwlSite</h1>
+        <div className={'center-content'} style={{}}>
+          OwlSite
+        </div>
+      </section>
     </>
   );
 };

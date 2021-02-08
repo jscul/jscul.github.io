@@ -8,7 +8,6 @@
 
   pointer-events: none;
 
-  width: calc(min(960px, 100%));
   grid-template-columns: repeat(5, 20%);
 
   // by default each section has 5 grid rows

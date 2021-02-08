@@ -1,5 +1,6 @@
 #home-page {
   justify-content: flex-end;
+  min-height: 100vh;
 
   .center-content {
     display: flex;
@@ -36,7 +37,7 @@
     justify-content: flex-end;
 
     .social-media-link {
-      color: rgb(34, 33, 33);
+      color: rgb(34, 34, 34);
       width: 36px;
       height: 36px;
       padding: 16px;
