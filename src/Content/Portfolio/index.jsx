@@ -75,6 +75,7 @@ export default ({section}) => {
             {Object.keys(projects).map((id) => {
               const {
                 title,
+                skills,
                 client: {logo},
                 live: {web, android, ios},
                 github,
@@ -100,9 +101,15 @@ export default ({section}) => {
                   </a>
                 );
 
+              const skills2 = skills.length !== 0 && (
+                <div className={'skills-used'}>
+                  {skills.map((s, i) => s.id)}
+                </div>
+              );
+
               return (
                 <li>
-                  <h3>{title}</h3>
+                  <div className={'head'}>{title}</div>
                   {logo && <img src={logo} />}
                   {links.length !== 0 && (
                     <div className={'live-links'}>

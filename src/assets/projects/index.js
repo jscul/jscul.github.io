@@ -4,8 +4,11 @@ import aspireLogo from './aspire/appLogo.png';
 import bmsClientLogo from './bms/clientLogo.png';
 import selfClientLogo from './portfolio/clientLogo.png';
 
+import s from '../skills';
+
 export default {
   eczemawise: {
+    skills: [],
     title: `EczemaWise`,
     slogan: `Eczema Shared Decision Making`,
     github: null,
@@ -27,7 +30,8 @@ export default {
     ],
   },
   owlsight: {
-    title: `OwlSight (NDA)`,
+    skills: [s.py, s.js, s.linux, s.mongodb, s.aws, s.s3],
+    title: `OwlSight (Partial NDA)`,
     slogan: ``,
     github: null,
     live: {},
@@ -37,6 +41,7 @@ export default {
     articles: [],
   },
   porfolio: {
+    skills: [],
     title: 'Portfolio Site',
     slogan: `You may think I can code, well you'd be right.`,
     github: 'https://github.com/jscul/portfolio',
@@ -45,6 +50,7 @@ export default {
     articles: [],
   },
   aspire: {
+    skills: [],
     title: `Aspire News App`,
     slogan: `Free App For Helping Prevent Domestic Violence`,
     github: null,
@@ -66,6 +72,7 @@ export default {
     ],
   },
   bms: {
+    skills: [],
     title: 'Bristol Myers Squibb - Parallax Site',
     slogan: `With every cell in their being, patients give their all. So do we.`,
     github: null,
