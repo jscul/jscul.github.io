@@ -70,7 +70,6 @@ export default ({section}) => {
     <>
       <section id={`${section.id}-page`} className={'page scroll-offset'}>
         <div className={'center-content'}>
-          <h1>Projects</h1>
           <ol>
             {Object.keys(projects).map((id) => {
               const {
