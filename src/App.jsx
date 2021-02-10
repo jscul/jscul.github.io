@@ -3,32 +3,19 @@ import React, {Fragment, useEffect, useRef, useState} from 'react';
 import Game from './game/Client';
 import Server from './game/server';
 
-import {Route} from 'react-router-dom';
-
-import {throttle, debounce} from 'lodash';
-
-import Overlay from 'components/Overlay';
+import Header from 'Content/Header';
 import Content from 'Content';
 
 import Home from 'Content/Home';
-
 import About from 'Content/About';
-
 import Skills from 'Content/Skills';
-
 import Experience from 'Content/Experience';
-
 import Portfolio from 'Content/Portfolio';
 import Portfolio1 from 'Content/Portfolio/pages/1';
 import Portfolio2 from 'Content/Portfolio/pages/2';
 import Portfolio3 from 'Content/Portfolio/pages/3';
-
 import Recommendations from 'Content/Recommendations';
-
 import Contact from 'Content/Contact';
-
-// import analytics from './analytics.firebase';
-// analytics.logEvent('loaded_page');
 
 const sections = [
   {
@@ -52,23 +39,23 @@ const sections = [
     component: Experience,
   },
   {
-    id: 'portfolio',
-    path: '/portfolio',
+    id: 'projects',
+    path: '/projects',
     component: Portfolio,
   },
   {
-    id: 'portfolio-1',
-    path: '/portfolio/1',
+    id: 'projects-1',
+    path: '/projects/1',
     component: Portfolio1,
   },
   {
-    id: 'portfolio-2',
-    path: '/portfolio/2',
+    id: 'projects-2',
+    path: '/projects/2',
     component: Portfolio2,
   },
   {
-    id: 'portfolio-3',
-    path: '/portfolio/3',
+    id: 'projects-3',
+    path: '/projects/3',
     component: Portfolio3,
   },
   {
@@ -88,6 +75,9 @@ for (let i = 0; i < sections.length; i++) {
   if (i !== sections.length - 1) sections[i].next = sections[i + 1].path;
 }
 
+// import analytics from './analytics.firebase';
+// analytics.logEvent('loaded_page');
+
 export default ({history, match}) => {
   let page = history.location.pathname;
   page =
@@ -106,8 +96,8 @@ export default ({history, match}) => {
 
   return (
     <>
-      <Overlay page={page} sections={sections} />
-      <Content page={page} history={history} sections={sections} />
+      <Header page={page} sections={sections} />
+      <Content page={page} sections={sections} history={history} />
     </>
   );
 };

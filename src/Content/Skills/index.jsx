@@ -1,218 +1,204 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {PureComponent, useState, useRef, useEffect} from 'react';
 
 import {NavLink, Route} from 'react-router-dom';
-import ReactMarkdownWithHtml from 'react-markdown/with-html';
-
-import logos from './logos';
-
-import './style.scss';
 import LocalLink from 'components/LocalLink';
 
-const SelectedElement = ({history, match}) => {
-  const {page, skill} = match.params;
+import ReactMarkdownWithHtml from 'react-markdown/with-html';
 
-  // get skill from localStorage
-  const [id, setId] = useState(localStorage.getItem('skill') || skill);
-  const [description, setDescription] = useState('');
+import hljs from 'highlight.js/lib/core';
+import 'highlight.js/styles/dracula.css';
+import javascript from 'highlight.js/lib/languages/javascript';
 
-  let logo = logos.find((value) => id === value.id);
-  if (!logo) logo = logos[0];
+import skills, {sections} from './sections';
+import logos from 'assets/skills';
 
-  // save current skill
-  localStorage.setItem('skill', logo.id);
+import './style.scss';
 
-  useEffect(() => {
-    if (page === 'about' && skill) setId(skill);
-  }, [page, skill]);
+hljs.registerLanguage('javascript', javascript);
 
-  useEffect(() => {
-    fetch(`/descriptions/${logo.id}.md`).then(
+class _Logo extends PureComponent {
+  render() {
+    const {id, src, link, hovering, onMouseOver, onMouseOut} = this.props;
+    const img = (
+      <img
+        onMouseOver={() => {
+          onMouseOver([id]);
+        }}
+        onMouseOut={onMouseOut}
+        src={src}
+        alt=''
+        className={hovering ? 'hovering' : ''}
+      />
+    );
+    if (link)
+      return (
+        <a
+          onMouseOver={() => {
+            onMouseOver([id]);
+          }}
+          onMouseOut={onMouseOut}
+          href={link}
+          target={'_blank'}
+          className={hovering ? 'hovering' : ''}>
+          {img}
+        </a>
+      );
+    else return img;
+  }
+}
+
+class _SelectedSkill extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      description: '',
+      hoveringOn: [],
+    };
+    this.getDescription = this.getDescription.bind(this);
+    this.onMouseOver = this.onMouseOver.bind(this);
+    this.onMouseOut = this.onMouseOut.bind(this);
+  }
+
+  componentDidMount() {
+    this.getDescription();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.section.id !== this.props.section.id) this.getDescription();
+  }
+
+  onMouseOver(hoveringOn) {
+    this.setState({hoveringOn: hoveringOn});
+  }
+
+  onMouseOut() {
+    this.setState({hoveringOn: []});
+  }
+
+  async getDescription() {
+    await fetch(`/descriptions/${this.props.section.id}.md`).then(
       (data) =>
         data.status === 200 &&
-        data.text().then((md) => {
-          setDescription(md);
-        })
+        data
+          .text()
+          .then((description) => this.setState({description, hoveringOn: []}))
     );
-  }, [logo]);
 
-  return (
-    <div className={'skill-description'} id={'skill-description'}>
-      <div className={'skill-logo'}>
-        {Array.isArray(logo.src) ? (
-          logo.src.map((src, i) => <img key={src} src={src} alt='' />)
-        ) : (
-          <img key={logo.src} src={logo.src} alt='' />
-        )}
+    const linksWithClasses = [
+      ...this.skillDescription.querySelectorAll('a'),
+    ].forEach((a) => {
+      if (a.classList.length) {
+        if (a.classList.length === 1 && !a.href) {
+          const c = a.classList[0];
+          if (c in logos && logos[c].link)
+            a.setAttribute('href', logos[c].link);
+        }
+        a.addEventListener('mouseover', (e) => {
+          this.onMouseOver([...a.classList]);
+        });
+        a.addEventListener('mouseout', this.onMouseOut);
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div
+        className={'skill-description'}
+        id={'skill-description'}
+        ref={(r) => (this.skillDescription = r)}>
+        <div className={'skill-logo'}>
+          {this.props.section.skills.map((props) => (
+            <_Logo
+              onMouseOver={this.onMouseOver}
+              onMouseOut={this.onMouseOut}
+              key={props.src}
+              hovering={this.state.hoveringOn.includes(props.id)}
+              {...props}
+            />
+          ))}
+        </div>
+        <ReactMarkdownWithHtml
+          allowDangerousHtml
+          renderers={{
+            link: ({href, children}) => {
+              return href.startsWith('/') ? (
+                <LocalLink
+                  className={'local-link'}
+                  find={href.slice(1).split('/').join('-') + '-page'}
+                  to={href}
+                  draggable={false}>
+                  {children}
+                </LocalLink>
+              ) : (
+                <a href={href} target={'_blank'}>
+                  {children}
+                </a>
+              );
+            },
+            code: ({language, value, ...props}) => {
+              return (
+                <pre>
+                  <code
+                    dangerouslySetInnerHTML={{
+                      __html: hljs.highlightAuto(value).value,
+                    }}
+                  />
+                </pre>
+              );
+            },
+          }}
+          className={`markdown`}>
+          {this.state.description}
+        </ReactMarkdownWithHtml>
       </div>
-      <ReactMarkdownWithHtml
-        allowDangerousHtml
-        renderers={{
-          link: ({href, children, node}) => {
-            return href.startsWith('/') ? (
-              <LocalLink
-                className={'local-link'}
-                find={href.slice(1).split('/').join('-') + '-page'}
-                to={href}
-                draggable={false}>
-                {children}
-              </LocalLink>
-            ) : (
-              <a href={href} target={'_blank'}>
-                {children}
-              </a>
-            );
-          },
-        }}
-        className={`${logo.id} description`}>
-        {description}
-      </ReactMarkdownWithHtml>
-    </div>
-  );
+    );
+  }
+}
+
+const SelectedSkill = ({history, match}) => {
+  const {page, skill} = match.params;
+  if (page === 'skills') {
+    if (skill) {
+      localStorage.setItem('skillId', skill);
+      return <_SelectedSkill section={sections[skill]} />;
+    }
+  }
+  if (localStorage.getItem('skillId')) {
+    return (
+      <_SelectedSkill section={sections[localStorage.getItem('skillId')]} />
+    );
+  }
+  return <_SelectedSkill section={sections['js']} />;
 };
 
 export default ({section, history}) => {
   return (
     <>
       <section id={`skills-page`} className={'page scroll-offset'}>
-        <h1>Skills</h1>
-        <div className='skills' id='skills'>
-          <div className={'skills-section'}>
-            <div className={'title'}>Languages</div>
-            <LocalLink
-              draggable={false}
-              to={'/about/javascript'}
-              className={'item clickable'}>
-              <span id={'about-javascript'}>JavaScript (ES6+)</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/python'}
-              className={'item clickable'}>
-              <span id={'about-python'}>Python</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/html'}
-              className={'item clickable'}>
-              <span id={'about-html'}>HTML</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/scss'}
-              className={'item clickable'}>
-              <span id={'about-scss'}>(S)CSS</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/sql'}
-              className={'item clickable'}>
-              <span id={'about-sql'}>MySQL/PostgreSQL</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/mongodb'}
-              className={'item clickable'}>
-              <span
-                id={'about-mongodb'}
-                title={"I know MongoDB isn't a language."}>
-                MongoDB
-              </span>
-            </LocalLink>
+        <div className='center-content'>
+          <h1>Skills</h1>
+          <div className='skills' id='skills'>
+            {Object.keys(skills).map((section, i) => {
+              return (
+                <div key={i} className={'skills-section'}>
+                  <div className={'title'}>{section}</div>
+                  {skills[section].map((skill, j) => (
+                    <LocalLink
+                      key={skill.id}
+                      draggable={false}
+                      to={`/skills/${skill.id}`}
+                      className={'item clickable'}>
+                      <span id={`skills-${skill.id}`}>{skill.title}</span>
+                    </LocalLink>
+                  ))}
+                </div>
+              );
+            })}
           </div>
-
-          <div className={'skills-section'}>
-            <div className={'title'}>Frameworks & Libraries</div>
-            <LocalLink
-              draggable={false}
-              to={'/about/react'}
-              className={'item clickable'}>
-              <span id='about-react' title={'❤️'}>
-                React
-              </span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/nodejs'}
-              className={'item clickable'}>
-              <span id='about-nodejs'>Node.js & Express</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/flask'}
-              className={'item clickable'}>
-              <span id='about-flask'>Flask</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/graphql'}
-              className={'item clickable'}>
-              <span id='about-graphql'>GraphQL & Apollo</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/messaging'}
-              className={'item clickable'}>
-              <span id='about-messaging'>Firebase/Twilio</span>
-            </LocalLink>
-          </div>
-          <div className={'skills-section'}>
-            <div className={'title'}>Tools</div>
-            <div className={'item'}>
-              <LocalLink
-                draggable={false}
-                to={'/about/aws'}
-                className={'item clickable'}>
-                <span id='about-aws'>AWS (EB/RDS/S3)</span>
-              </LocalLink>
-            </div>
-            <LocalLink
-              draggable={false}
-              to={'/about/npm'}
-              className={'item clickable'}>
-              <span id='about-npm'>npm & yarn</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/docker'}
-              className={'item clickable'}>
-              <span id='about-docker'>docker[-compose]</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/postman'}
-              className={'item clickable'}>
-              <span id='about-postman'>Postman</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/git'}
-              className={'item clickable'}>
-              <span id='about-git'>Git & GitHub</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/vscode'}
-              className={'item clickable'}>
-              <span id='about-vscode'>VS Code</span>
-            </LocalLink>
-            <LocalLink
-              draggable={false}
-              to={'/about/linux'}
-              className={'item clickable'}>
-              <span id='about-linux'>Linux</span>
-            </LocalLink>
-          </div>
+          <Route path={'/:page?/:skill?'} component={SelectedSkill} />
         </div>
-
-        <Route path={'/:page?/:skill?'} component={SelectedElement} />
       </section>
-
-      {/* <a
-          className={'download-resume'}
-          download={true}
-          href='https://docs.google.com/document/d/1ik1XvZifJBw2v4Guut3EJO90E0HuzFzzuQuY-fDvXc4/export?format=pdf'>
-          Download resume 📄
-        </a> */}
     </>
   );
 };

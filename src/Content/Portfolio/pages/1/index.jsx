@@ -2,7 +2,7 @@ import React from 'react';
 
 import {NavLink} from 'react-router-dom';
 
-// import image from 'assets/Portfolio/Screenshot from 2020-07-30 21-06-36.png';
+// import image from 'assets/projects/eczemawise/Screenshot from 2020-07-30 21-06-36.png';
 
 import './style.scss';
 

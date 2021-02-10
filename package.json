@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
     "firebase": "^8.2.6",
+    "highlight.js": "^10.5.0",
     "lodash": "^4.17.20",
     "pixi.js": "^5.3.7",
     "react": "^17.0.1",
@@ -22,7 +23,9 @@
     "build": "react-scripts build",
     "postbuild": "rm -rf jscul.github.io/* && mv -v build/* jscul.github.io/ && rm -rf build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix --ext .js,.jsx ./src"
   },
   "eslintConfig": {
     "extends": "react-app"

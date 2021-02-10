@@ -2,7 +2,7 @@ import React, {Video} from 'react';
 
 import {NavLink} from 'react-router-dom';
 
-import video from 'assets/portfolio/owlsite/test.mp4';
+// import video from 'assets/projects/owlsight/test.mp4';
 
 import './style.scss';
 

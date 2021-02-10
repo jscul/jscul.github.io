@@ -207,7 +207,7 @@ export default class Server {
     // list of controllable entities
     // control is an array in case of taken control
     this.players = {
-      ['Jf349q0QNHTn']: player,
+      'Jf349q0QNHTn': player,
     };
 
     this.rooms = [new Room({friction: 0.9}, {Jf349q0QNHTn: player})];

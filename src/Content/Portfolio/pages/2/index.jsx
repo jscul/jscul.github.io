@@ -8,9 +8,9 @@ export default ({section}) => {
   return (
     <>
       <section id={`${section.id}-page`} className={'page scroll-offset'}>
-        <h1>[2] OwlSite</h1>
+        <h1>[2] OwlSight</h1>
         <div className={'center-content'} style={{}}>
-          OwlSite
+          OwlSight
         </div>
       </section>
     </>

@@ -1,55 +1,47 @@
-#experience-page {
-  justify-content: space-around;
+@import '../../global';
 
+$image-size: 80px;
+
+#experience-page {
   .center-content {
     font-size: 18px;
 
+    padding: 32px;
+
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+
+    h1 {
+      transform: rotate(-90deg);
+      margin: 0;
+    }
 
     .workplace-container {
-      display: grid;
-      grid-template-columns: 2;
-      grid-template-rows: 3;
-      gap: 42px 32px;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
 
-      padding: 16px;
-
-      .arrow {
-        grid-column: 1/2;
-        grid-row: 2/5;
-        place-self: stretch stretch;
-        position: relative;
-
-        .line {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-
-          z-index: -1;
-          overflow: visible;
-          stroke-linecap: round;
-
-          path {
-            stroke-width: 2;
-            stroke: white;
-            fill: none;
-          }
-        }
+      .question-mark {
+        font-size: 60px;
+        line-height: $image-size;
+        text-align: center;
+        border: 2px dashed #333;
       }
 
-      .circle {
-        grid-column: 1/2;
-        grid-row: 2/3;
-        border: 4px solid white;
-        background-color: #111111;
+      span {
+        margin: 0 12px;
+        color: #444;
+      }
+
+      .circle,
+      .question-mark {
+        background-color: $eerie-black;
+        color: #eee;
         z-index: 1;
-        width: 25px;
-        height: 25px;
+        width: $image-size;
+        height: $image-size;
+        box-shadow: 0 2px 12px rgba($color: #000000, $alpha: 0.6);
         border-radius: 100%;
-        place-self: center;
 
         & ~ .circle {
           grid-row: 3/4;
@@ -60,18 +52,10 @@
       }
 
       .workplace {
-        grid-column: 2/3;
-        grid-row: 2/3;
-
         display: flex;
-        flex-direction: column;
-
-        & ~ .workplace {
-          grid-row: 3/4;
-          & ~ .workplace {
-            grid-row: 4/5;
-          }
-        }
+        flex-direction: row;
+        align-items: center;
+        margin: 16px 0;
 
         .name {
           font-size: 1.9rem;

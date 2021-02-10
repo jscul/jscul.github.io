@@ -1,37 +1,66 @@
 @import '../global';
 
-.content {
+#root {
+  // contains all sections
+
   font-size: calc(10px + 2vmin);
   color: $white;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .content {
+    display: grid;
+    grid-template-columns: 36px auto 36px;
 
-  section {
-    width: min(960px, 100%);
-    margin: auto;
-    padding: 32px 32px 100px 32px;
+    justify-content: center;
 
-    box-sizing: border-box;
+    section {
+      // basically a page
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+      max-width: min(100vw, 960px);
+      overflow: hidden;
 
-    &.scroll-offset {
-      margin-top: -100px;
-      padding-top: 100px;
-    }
+      // side padding
+      grid-column: 2 / 3;
 
-    > h1 {
-      text-align: left;
-      align-self: stretch;
-      font-weight: 100;
-      font-size: 32px;
-      color: #333;
-      padding-bottom: 16px;
-      border-bottom: 1px solid #333;
+      // make container take up entire page - the header
+      min-height: 100vh;
+      padding-top: $header-height;
+      box-sizing: border-box;
+
+      // center contents?
+      display: grid;
+      align-items: center;
+      justify-content: center;
+
+      &#home-page {
+      }
+
+      &#about-page {
+      }
+
+      &#skills-page {
+      }
+
+      &#skills-page {
+      }
+
+      &#skills-page {
+      }
+
+      &#skills-page {
+        justify-content: stretch;
+        align-items: start;
+      }
+
+      // most sections have a leading h1
+      > h1 {
+        text-align: left;
+        align-self: stretch;
+        font-weight: 100;
+        font-size: 24px;
+        color: #333;
+        padding-left: 8px;
+        text-align: center;
+      }
     }
   }
 }

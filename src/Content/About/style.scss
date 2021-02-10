@@ -2,11 +2,26 @@
 
 #about-page {
   .center-content {
-    align-self: center;
     padding: 36px;
 
     line-height: 26px;
     font-size: 1.6rem;
     font-weight: 400;
+  }
+
+  .download-resume {
+    white-space: nowrap;
+    text-decoration: none;
+    color: #888;
+    font-size: 18px;
+    padding: 0 8px 8px 8px;
+    align-self: flex-end;
+
+    .material-icons {
+      font-size: inherit;
+      line-height: inherit;
+      vertical-align: middle;
+      font-size: 24px;
+    }
   }
 }
