@@ -31,7 +31,7 @@ export default {
   },
   owlsight: {
     skills: [s.py, s.js, s.linux, s.mongodb, s.aws, s.s3],
-    title: `OwlSight (Partial NDA)`,
+    title: `OwlSight (NDA)`,
     slogan: ``,
     github: null,
     live: {},

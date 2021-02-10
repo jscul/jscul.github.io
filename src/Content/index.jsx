@@ -1,8 +1,9 @@
 import {Fragment, useEffect, useRef} from 'react';
+import sections from './sections';
 
 import './style.scss';
 
-export default ({history, page, sections}) => {
+export default ({history, page}) => {
   const getDistanceFromMiddle = (el) => {
     var {top} = el.getBoundingClientRect();
     return Math.abs(top);

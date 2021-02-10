@@ -30,11 +30,12 @@ export default ({section, history}) => {
             </a>
             .
           </p>
+          {/* https://docs.google.com/document/d/e/2PACX-1vSdZMyqVU4HU5od4oWocg1QAmF8A0rQdmf0lF8j3ewbn1ux5W07ec7pd725A1I-8i0zNmyxNVeAgB4p/pub?embedded=true */}
           <a
             className={'download-resume'}
-            download={true}
-            href='https://docs.google.com/document/d/1ik1XvZifJBw2v4Guut3EJO90E0HuzFzzuQuY-fDvXc4/export?format=pdf'>
-            download resume <span className='material-icons'>download</span>
+            target={'_blank'}
+            href='/John-Cullen-Resume.pdf'>
+            resume <span className='material-icons'>download</span>
           </a>
         </div>
       </section>
