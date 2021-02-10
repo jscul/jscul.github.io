@@ -21,6 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "rm -rf jscul.github.io/* && mv -v build/* jscul.github.io/ && rm -rf build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
