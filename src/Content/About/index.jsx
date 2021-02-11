@@ -34,7 +34,8 @@ export default ({section, history}) => {
           <a
             className={'download-resume'}
             target={'_blank'}
-            href='/John-Cullen-Resume.pdf'>
+            rel={'noopener noreferrer'}
+            href='/John_Cullen.pdf'>
             resume <span className='material-icons'>download</span>
           </a>
         </div>

@@ -71,7 +71,7 @@ export default ({section}) => {
       <section id={`${section.id}-page`} className={'page scroll-offset'}>
         <div className={'center-content'}>
           <ol>
-            {Object.keys(projects).map((id) => {
+            {Object.keys(projects).map((id, i) => {
               const {
                 title,
                 skills,
@@ -107,7 +107,7 @@ export default ({section}) => {
               );
 
               return (
-                <li>
+                <li key={i}>
                   <div className={'head'}>{title}</div>
                   {logo && <img src={logo} />}
                   {links.length !== 0 && (
