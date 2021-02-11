@@ -8,7 +8,6 @@ import Header from 'Content/Header';
 import Content from 'Content';
 import sections from './Content/sections';
 
-analytics.logEvent('test_event');
 for (let i = 0; i < sections.length; i++) {
   if (i !== 0) sections[i].previous = sections[i - 1].path;
   if (i !== sections.length - 1) sections[i].next = sections[i + 1].path;
