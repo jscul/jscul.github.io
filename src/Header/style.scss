@@ -1,4 +1,4 @@
-@import '../../global';
+@import '../global';
 
 .header {
   position: fixed;
@@ -69,7 +69,13 @@
     padding: 0 12px;
     text-decoration: none;
 
-    &:hover {
+    &.link-blog {
+      font-size: 15px;
+      white-space: pre-wrap;
+      margin-right: 6px;
+    }
+
+    &:hover:not(.link-blog) {
       text-decoration: underline;
     }
   }

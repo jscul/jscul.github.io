@@ -21,7 +21,7 @@ export default class Experience extends PureComponent {
                 <div className={'question-mark'}>?</div>
                 <span>&#8212;</span>
                 <div>
-                  <div className={'name'}>Software Developer</div>
+                  <div className={'name'}>Software Engineer</div>
                   <div className={'info'}>&lt;!-- ? --&gt;, Present - ?</div>
                 </div>
               </div>
@@ -29,7 +29,7 @@ export default class Experience extends PureComponent {
                 <img src={dogtownmediaImg} className='circle' />
                 <span>&#8212;</span>
                 <div>
-                  <div className={'name'}>Software Developer</div>
+                  <div className={'name'}>Software Engineer</div>
                   <div className={'info'}>
                     <a href={'https://www.dogtownmedia.com/'} target={'_blank'}>
                       Dogtown Media

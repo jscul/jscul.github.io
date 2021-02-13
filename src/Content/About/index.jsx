@@ -14,7 +14,7 @@ export default ({section, history}) => {
         <div className={`center-content`}>
           <h1>About Me</h1>
           <p>
-            Hello! I'm John, a software developer based out of Los Angeles, CA.
+            Hello! I'm John, a software engineer based out of Los Angeles, CA.
           </p>
           <p>
             I have 4+ years of extensive professional experience building robust

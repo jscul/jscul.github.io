@@ -20,7 +20,7 @@ const Tile = ({profileImage, text, name, title, link, hiding, showing}) => {
   );
 };
 
-const Caurosel = ({}) => {
+export default ({section}) => {
   const [showingIndex, setShowingIndex] = useState(0);
   const [hidingIndex, setHidingIndex] = useState(-1);
 
@@ -53,19 +53,18 @@ const Caurosel = ({}) => {
     setShowingIndex(nextIndex);
   };
 
-  const animateOut = (el) => {};
-
-  const animateIn = (el) => {};
-
   return (
-    <div className={`caurosel ${direction === -1 ? 'left' : 'right'}`}>
+    <section id={`${section.id}-page`} className={'page scroll-offset'}>
+      <h1>Recommendations</h1>
       <button onClick={goLeft} className={'left'}>
         <i className='material-icons'>chevron_left</i>
       </button>
-      {children}
-      <button onClick={goRight} button={'right'}>
+      <button onClick={goRight} className={'right'}>
         <i className='material-icons'>chevron_right</i>
       </button>
+      <div className={`caurosel ${direction === -1 ? 'left' : 'right'}`}>
+        {children}
+      </div>
       <div className={'pages'}>
         <div className='stretch' />
         {children.map((_, i) => {
@@ -78,19 +77,6 @@ const Caurosel = ({}) => {
         })}
         <div className='stretch' />
       </div>
-    </div>
-  );
-};
-
-export default ({section}) => {
-  return (
-    <>
-      <section id={`${section.id}-page`} className={'page scroll-offset'}>
-        <div className='center-content'>
-          <h1>Recommendations</h1>
-          <Caurosel />
-        </div>
-      </section>
-    </>
+    </section>
   );
 };

@@ -4,6 +4,7 @@ import jose from './jose.jpeg';
 import josef from './josef.jpeg';
 import pablo from './pablo.jpeg';
 import john from './john.jpeg';
+import kristen from './kristen.jpeg';
 
 export default [
   {
@@ -61,18 +62,32 @@ export default [
       </>
     ),
   },
-  {
-    name: '🧑‍💻 John Cullen',
-    profileImage: john,
-    text: `Why wouldn't I recommend myself?`,
-    title: (
-      <>
-        Software Developer [React, Node.js, Python, MySQL, MongoDB, Linux]{' '}
-        <a href={'https://www.dogtownmedia.com/'} target={'_blank'}>
-          @ Dogtown Media
-        </a>
-        .
-      </>
-    ),
-  },
+  // {
+  //   name: '👩‍💼 Kristen Jarin',
+  //   profileImage: kristen,
+  //   text: `The first time I worked with John, we pulled him onto a robotics project that I had been on for a year, with a team of iOS and Android developers. We were collaborating with a robotics team in California, building native mobile applications to seamlessly integrate with the robot's hardware and software. Our issue of having a robotic prototype, but no robotics developer on site, soon became a barrier to progress and efficiency. John, with support of his manager, jumped into the project with both feet. He learned quickly and was able to troubleshooting issues with the robot prototype, (both hardware and software), and keep the project moving ahead, in no time. This experience with John displayed his perseverance and curiosity, as well as his focus on the success of the overall team and project. Working with John since that project has been the same positive scenario of adaptability, determination and success.`,
+  //   title: (
+  //     <>
+  //       Senior Technical Project Manager{' '}
+  //       <a href={'https://www.dogtownmedia.com/'} target={'_blank'}>
+  //         @ Dogtown Media
+  //       </a>
+  //       .
+  //     </>
+  //   ),
+  // },
+  // {
+  //   name: '🧑‍💻 John Cullen',
+  //   profileImage: john,
+  //   text: `Why wouldn't I recommend myself?`,
+  //   title: (
+  //     <>
+  //       Software Engineer [React, Node.js, Python, MySQL, MongoDB, Linux]{' '}
+  //       <a href={'https://www.dogtownmedia.com/'} target={'_blank'}>
+  //         @ Dogtown Media
+  //       </a>
+  //       .
+  //     </>
+  //   ),
+  // },
 ];

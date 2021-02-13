@@ -1,8 +1,9 @@
 import React, {useState, useRef, useEffect} from 'react';
 
 import {NavLink} from 'react-router-dom';
-
 import LocalLink from 'components/LocalLink';
+
+import Owl from 'Content/Blog/owl';
 
 import './style.scss';
 
@@ -69,10 +70,12 @@ export default ({page, sections}) => {
 
     timers.current.push(
       setTimeout(() => {
+        if (!brackets.current) return;
         brackets.current.style.left = targetBounds.left + 'px';
         brackets.current.style.width = targetBounds.width + 'px';
         timers.current.push(
           setTimeout(() => {
+            if (!brackets.current) return;
             brackets.current.style.top =
               targetBounds.top - headerBounds.top + 'px';
           }, 300)
@@ -91,6 +94,15 @@ export default ({page, sections}) => {
         <div className={'left-bracket'}>[</div>
         <div className={'right-bracket'}>]</div>
       </div>
+
+      <NavLink
+        to='/blog'
+        exact
+        className={'link link-blog'}
+        draggable='false'
+        replace={false}>
+        <Owl />
+      </NavLink>
 
       <LocalLink
         find={'home-page'}

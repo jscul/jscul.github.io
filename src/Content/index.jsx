@@ -27,7 +27,8 @@ export default ({history, page}) => {
           (section) => section.id === closest.id.replace('-page', '')
         );
         if (section && page.split('-')[0] !== section.id)
-          history.push(section.path);
+          // TODO buggy
+          history.replace(section.path);
       }
     };
 

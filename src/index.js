@@ -4,9 +4,9 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import {HashRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-console.info(` {o,o}
+console.log(` {o,o}
 ./)_)
   " "`);
 

@@ -4,7 +4,9 @@ import analytics from './analytics.firebase';
 import Game from './game/Client';
 import Server from './game/server';
 
-import Header from 'Content/Header';
+import Blog from './Content/Blog';
+
+import Header from 'Header';
 import Content from 'Content';
 import sections from './Content/sections';
 
@@ -29,9 +31,16 @@ export default ({history, match}) => {
     return <Game />;
   }
 
+  if (page === 'blog') {
+    return <Blog />;
+  }
+
   return (
     <>
       <Header page={page} sections={sections} />
+      {/* <Switch>
+        <Route></Route>
+      </Switch> */}
       <Content page={page} history={history} />
     </>
   );

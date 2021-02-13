@@ -9,7 +9,7 @@ export default ({find, to, block = 'start', children, ...props}) => {
     // let scroll listener handle updating the url
     e.preventDefault();
 
-    if (to) history.push(to);
+    if (to && !find) history.replace(to);
 
     if (find) {
       const el = document.getElementById(find);
@@ -23,7 +23,7 @@ export default ({find, to, block = 'start', children, ...props}) => {
   };
 
   return (
-    <NavLink to={to} {...props} onClick={onClick}>
+    <NavLink to={to} {...props} onClick={onClick} replace={false}>
       {children}
     </NavLink>
   );
