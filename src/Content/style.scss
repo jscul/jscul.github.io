@@ -8,9 +8,21 @@
 
   .content {
     display: grid;
-    grid-template-columns: 36px auto 36px;
-
     justify-content: center;
+    grid-template-columns: 36px auto 36px;
+    @media only screen and (max-width: 800px) {
+      grid-template-columns: 12px auto 12px;
+    }
+
+    .header-curtain {
+      position: fixed;
+      z-index: 99;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: $header-height;
+      background: $eerie-black;
+    }
 
     section {
       // basically a page
@@ -22,9 +34,12 @@
       grid-column: 2 / 3;
 
       // make container take up entire page - the header
-      min-height: 100vh;
       padding-top: $header-height;
       box-sizing: border-box;
+      min-height: 100vh;
+      @media only screen and (max-width: 800px) {
+        min-height: 0;
+      }
 
       // center contents?
       display: grid;
@@ -55,10 +70,9 @@
       > h1 {
         text-align: left;
         font-weight: 100;
-        font-size: 24px;
-        color: #333;
+        font-size: 32px;
+        color: whitesmoke;
         padding-left: 8px;
-        text-align: center;
       }
     }
   }

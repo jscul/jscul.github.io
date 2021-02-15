@@ -1,26 +1,190 @@
 #contact-page {
-  .center-content {
-    .contact-form {
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 2fr;
+
+  h1 {
+    place-self: end stretch;
+    grid-row: 1/2;
+    color: whitesmoke;
+
+    grid-column: 2/3;
+    @media only screen and (max-width: 800px) {
+      grid-column: 1/4;
+    }
+  }
+
+  .contact-form {
+    place-self: start stretch;
+    grid-row: 2/3;
+
+    grid-column: 2/3;
+    @media only screen and (max-width: 800px) {
+      grid-column: 1/4;
+    }
+
+    display: flex;
+    flex-direction: column;
+
+    font-size: 18px;
+    padding: 16px;
+
+    position: relative;
+
+    > div {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      margin: 4px 0;
 
-      font-size: 18px;
-      padding: 16px;
+      &.error {
+        color: rgb(223, 43, 43);
+        font-size: 12px;
+        display: block;
+        text-align: right;
+        padding: 0 4px;
+        margin-top: -6px;
+      }
 
-      div {
-        display: flex;
+      &.submit-row {
+        margin: 24px 8px 0 0;
+        justify-content: flex-end;
+        align-items: stretch;
 
-        label {
-          flex: 1;
+        .disclaimer {
+          display: flex;
+          align-items: center;
+          height: auto;
+          cursor: default;
+          position: relative;
+
+          margin-right: 12px;
+
+          .material-icons {
+            font-size: 20px;
+            color: #555;
+            transition: color 0.3s ease;
+          }
+
+          &:hover {
+            .material-icons {
+              color: #bbb;
+            }
+            .message-wrapper {
+              display: block;
+            }
+          }
+
+          .message-wrapper {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            padding: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+
+            .message {
+              align-items: center;
+              justify-content: flex-start;
+              text-align: center;
+              font-size: 13px;
+              padding: 16px;
+              color: #eee;
+              background-color: #222;
+              box-shadow: 0 2px 12px rgba($color: #000000, $alpha: 0.5);
+              border-radius: 8px;
+
+              div {
+                a {
+                  color: #888;
+                  font-size: 11px;
+                  display: block;
+
+                  padding-top: 9px;
+                  padding-bottom: 2px;
+                  & ~ a {
+                    padding-bottom: 9px;
+                    padding-top: 2px;
+                  }
+                }
+
+                &:last-child {
+                  font-size: 24px;
+                }
+              }
+            }
+          }
         }
 
-        input,
-        textarea {
-          margin: 6px 12px;
-          flex: 2;
-          resize: none;
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          background-color: #333;
+          box-shadow: 0 2px 8px rgba($color: #000000, $alpha: 0.3);
           font-size: 16px;
+          font-weight: 600;
+          padding: 9px 24px 9px 16px;
+
+          border: none;
+          border-radius: 4px;
+          outline: none;
+
+          cursor: pointer;
+          color: white;
+          &:disabled {
+            color: #444;
+            cursor: default;
+          }
+
+          span {
+            padding-right: 24px;
+          }
+
+          .plane-container {
+            position: relative;
+            transform: rotate(0);
+
+            svg {
+              position: absolute;
+              opacity: 0.8;
+              height: 1.2em;
+              font-size: 18px;
+              left: 0;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              fill: currentColor;
+            }
+          }
         }
+      }
+
+      label {
+        flex: 1;
+      }
+
+      input {
+        margin: 6px 0 6px 12px;
+      }
+
+      textarea {
+        margin: 8px 0 6px 0;
+      }
+
+      input,
+      textarea {
+        background-color: #282828;
+        box-shadow: 0 2px 8px rgba($color: #000000, $alpha: 0.2);
+        padding: 8px 14px;
+        flex: 2;
+        resize: none;
+        font-size: 15px;
+        border: none;
+        border-radius: 4px;
+        outline: none;
+        color: white;
+        font-family: 'Arial';
       }
     }
   }

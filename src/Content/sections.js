@@ -35,21 +35,21 @@ export default [
     path: '/projects',
     component: Portfolio,
   },
-  {
-    id: 'projects-1',
-    path: '/projects/1',
-    component: Portfolio1,
-  },
-  {
-    id: 'projects-2',
-    path: '/projects/2',
-    component: Portfolio2,
-  },
-  {
-    id: 'projects-3',
-    path: '/projects/3',
-    component: Portfolio3,
-  },
+  // {
+  //   id: 'projects-1',
+  //   path: '/projects/1',
+  //   component: Portfolio1,
+  // },
+  // {
+  //   id: 'projects-2',
+  //   path: '/projects/2',
+  //   component: Portfolio2,
+  // },
+  // {
+  //   id: 'projects-3',
+  //   path: '/projects/3',
+  //   component: Portfolio3,
+  // },
   {
     id: 'recommendations',
     path: '/recommendations',

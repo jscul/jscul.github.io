@@ -30,7 +30,7 @@ export default [
   {
     name: '🧑‍💻 Jose Ramirez',
     profileImage: jose,
-    text: `Having met John over 12 years ago, there's never been a dull moment. He always takes any chance he can get to ask for advice on the IT field, in a way it's allowed me to be in the front row seats when it comes to his career in IT. I've personally seen how John transformed from someone who was simply curious about IT, into a well rounded JavaScript expert, to the point where I often find myself asking him for advice now with anything JS from React to Node. But it doesn't stop there, I've been able to learn some nice DevOps tricks from John, Docker can be a hell of a beast.`,
+    text: `I've personally seen how John transformed from someone who was simply curious about IT, into a well rounded JavaScript expert, to the point where I often find myself asking him for advice now with anything JS from React to Node. But it doesn't stop there, I've been able to learn some nice DevOps tricks from John, Docker can be a hell of a beast.`,
     title: `Ingenious IT solutions just in case 'turning it off and on again' doesn't do the trick.`,
   },
   {

@@ -18,10 +18,10 @@ export default ({...props}) => {
   }, [eye]);
 
   return (
-    <div style={{}}>
+    <pre style={{}}>
       {` {${eye},${eye}}\n`}
       {'./)_)\n'}
       {'  " "\n'}
-    </div>
+    </pre>
   );
 };

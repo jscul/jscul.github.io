@@ -39,6 +39,7 @@ export default ({history, page}) => {
   // return an array of grid sections
   return (
     <div className='content'>
+      <div className={'header-curtain'} />
       {sections.map((section, i) => {
         const Section = section.component;
         return <Section key={i} history={history} section={section} />;

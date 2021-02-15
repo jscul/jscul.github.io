@@ -93,20 +93,21 @@ class _SelectedSkill extends PureComponent {
           if (c in logos && logos[c].link)
             a.setAttribute('href', logos[c].link);
         }
-        a.addEventListener('mouseover', (e) => {
-          this.onMouseOver([...a.classList]);
+        a.parentElement.addEventListener('mouseover', (e) => {
+          this.onMouseOver([...this.state.hoveringOn, ...a.classList]);
+          a.classList.add('hovering');
         });
-        a.addEventListener('mouseout', this.onMouseOut);
+        a.parentElement.addEventListener('mouseout', () => {
+          a.classList.remove('hovering');
+          this.onMouseOut();
+        });
       }
     });
   }
 
   render() {
     return (
-      <div
-        className={'skill-description'}
-        id={'skill-description'}
-        ref={(r) => (this.skillDescription = r)}>
+      <>
         <div className={'skill-logo'}>
           {this.props.section.skills.map((props) => (
             <_Logo
@@ -118,40 +119,44 @@ class _SelectedSkill extends PureComponent {
             />
           ))}
         </div>
-        <ReactMarkdownWithHtml
-          allowDangerousHtml
-          renderers={{
-            link: ({href, children}) => {
-              return href.startsWith('/') ? (
-                <LocalLink
-                  className={'local-link'}
-                  find={href.slice(1).split('/').join('-') + '-page'}
-                  to={href}
-                  draggable={false}>
-                  {children}
-                </LocalLink>
-              ) : (
-                <a href={href} target={'_blank'}>
-                  {children}
-                </a>
-              );
-            },
-            code: ({language, value, ...props}) => {
-              return (
-                <pre>
-                  <code
-                    dangerouslySetInnerHTML={{
-                      __html: hljs.highlightAuto(value).value,
-                    }}
-                  />
-                </pre>
-              );
-            },
-          }}
-          className={`markdown`}>
-          {this.state.description}
-        </ReactMarkdownWithHtml>
-      </div>
+        <div
+          className={'markdown-container'}
+          ref={(r) => (this.skillDescription = r)}>
+          <ReactMarkdownWithHtml
+            allowDangerousHtml
+            renderers={{
+              link: ({href, children}) => {
+                return href.startsWith('/') ? (
+                  <LocalLink
+                    className={``}
+                    find={href.slice(1).split('/').join('-') + '-page'}
+                    to={href}
+                    draggable={false}>
+                    {children}
+                  </LocalLink>
+                ) : (
+                  <a href={href} target={'_blank'}>
+                    {children}
+                  </a>
+                );
+              },
+              code: ({language, value, ...props}) => {
+                return (
+                  <pre>
+                    <code
+                      dangerouslySetInnerHTML={{
+                        __html: hljs.highlightAuto(value).value,
+                      }}
+                    />
+                  </pre>
+                );
+              },
+            }}
+            className={`markdown`}>
+            {this.state.description}
+          </ReactMarkdownWithHtml>
+        </div>
+      </>
     );
   }
 }
@@ -176,28 +181,24 @@ export default ({section, history}) => {
   return (
     <>
       <section id={`skills-page`} className={'page scroll-offset'}>
-        <div className='center-content'>
-          <h1>Skills</h1>
-          <div className='skills' id='skills'>
-            {Object.keys(skills).map((section, i) => {
-              return (
-                <div key={i} className={'skills-section'}>
-                  <div className={'title'}>{section}</div>
-                  {skills[section].map((skill, j) => (
-                    <LocalLink
-                      key={skill.id}
-                      draggable={false}
-                      to={`/skills/${skill.id}`}
-                      className={'item clickable'}>
-                      <span id={`skills-${skill.id}`}>{skill.title}</span>
-                    </LocalLink>
-                  ))}
-                </div>
-              );
-            })}
-          </div>
-          <Route path={'/:page?/:skill?'} component={SelectedSkill} />
-        </div>
+        <h1>Skills</h1>
+        {Object.keys(skills).map((section, i) => {
+          return (
+            <div key={i} className={'skills-section'}>
+              <div className={'title'}>{section}</div>
+              {skills[section].map((skill, j) => (
+                <LocalLink
+                  key={skill.id}
+                  draggable={false}
+                  to={`/skills/${skill.id}`}
+                  className={'item clickable'}>
+                  <span id={`skills-${skill.id}`}>{skill.title}</span>
+                </LocalLink>
+              ))}
+            </div>
+          );
+        })}
+        <Route path={'/:page?/:skill?'} component={SelectedSkill} />
       </section>
     </>
   );

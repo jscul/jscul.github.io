@@ -62,8 +62,12 @@ export default ({page, sections}) => {
       clearTimeout(timer);
     });
 
-    const targetBounds = document.getElementById(id).getBoundingClientRect();
+    const target = document.getElementById(id);
     const headerBounds = header.current.getBoundingClientRect();
+    let targetBounds = target.getBoundingClientRect();
+
+    // we need to be more clever about what we're adding here
+    // target.parentElement.parentElement.scrollLeft += targetBounds.left;
 
     brackets.current.style.top =
       targetBounds.top - headerBounds.top - targetBounds.height + 'px';
@@ -71,7 +75,8 @@ export default ({page, sections}) => {
     timers.current.push(
       setTimeout(() => {
         if (!brackets.current) return;
-        brackets.current.style.left = targetBounds.left + 'px';
+        brackets.current.style.left =
+          targetBounds.left + header.current.scrollLeft + 'px';
         brackets.current.style.width = targetBounds.width + 'px';
         timers.current.push(
           setTimeout(() => {
@@ -86,77 +91,77 @@ export default ({page, sections}) => {
 
   return (
     <header className='header' ref={header}>
-      <div className='fade-in' />
+      <nav>
+        <NavLink
+          to='/blog'
+          exact
+          className={'link link-blog'}
+          draggable='false'
+          replace={false}>
+          <Owl />
+        </NavLink>
+        <div className='fade-in' />
 
-      <div
-        className={`brackets ${initialLoad || 'no-transition'}`}
-        ref={brackets}>
-        <div className={'left-bracket'}>[</div>
-        <div className={'right-bracket'}>]</div>
-      </div>
+        <div
+          className={`brackets ${initialLoad || 'no-transition'}`}
+          ref={brackets}>
+          <div className={'left-bracket'}>[</div>
+          <div className={'right-bracket'}>]</div>
+        </div>
 
-      <NavLink
-        to='/blog'
-        exact
-        className={'link link-blog'}
-        draggable='false'
-        replace={false}>
-        <Owl />
-      </NavLink>
+        <LocalLink
+          find={'home-page'}
+          to='/'
+          exact
+          className={'link'}
+          draggable='false'>
+          <span id={'home'}>home</span>
+        </LocalLink>
 
-      <LocalLink
-        find={'home-page'}
-        to='/'
-        exact
-        className={'link'}
-        draggable='false'>
-        <span id={'home'}>home</span>
-      </LocalLink>
+        <div className='stretch'></div>
 
-      <div className='stretch'></div>
+        <LocalLink
+          find={'about-page'}
+          to='/about'
+          exact
+          className={'link'}
+          draggable='false'>
+          <span id={'about'}>about</span>
+        </LocalLink>
 
-      <LocalLink
-        find={'about-page'}
-        to='/about'
-        exact
-        className={'link'}
-        draggable='false'>
-        <span id={'about'}>about</span>
-      </LocalLink>
+        <span>-></span>
 
-      <span>-></span>
+        <LocalLink
+          find={'skills-page'}
+          to='/skills'
+          exact
+          className={'link'}
+          draggable='false'>
+          <span id={'skills'}>skills</span>
+        </LocalLink>
 
-      <LocalLink
-        find={'skills-page'}
-        to='/skills'
-        exact
-        className={'link'}
-        draggable='false'>
-        <span id={'skills'}>skills</span>
-      </LocalLink>
+        <span>-></span>
 
-      <span>-></span>
+        <LocalLink
+          find={'experience-page'}
+          to='/experience'
+          exact
+          className={'link'}
+          draggable='false'>
+          <span id={'experience'}>work</span>
+        </LocalLink>
 
-      <LocalLink
-        find={'experience-page'}
-        to='/experience'
-        exact
-        className={'link'}
-        draggable='false'>
-        <span id={'experience'}>work</span>
-      </LocalLink>
+        <span>-></span>
 
-      <span>-></span>
-
-      <LocalLink
-        find={'projects-page'}
-        to='/projects'
-        exact
-        className={'link'}
-        draggable='false'>
-        <span id={'projects'}>projects</span>
-      </LocalLink>
-      <LocalLink
+        <LocalLink
+          find={'projects-page'}
+          to='/projects'
+          exact
+          className={'link'}
+          draggable='false'>
+          <span id={'projects'}>projects</span>
+        </LocalLink>
+        {/* <LocalLink
         find={'projects-1-page'}
         to='/projects/1'
         exact
@@ -179,29 +184,30 @@ export default ({page, sections}) => {
         className={'link'}
         draggable='false'>
         <span id={'projects-3'}>3</span>
-      </LocalLink>
+      </LocalLink> */}
 
-      <span>-></span>
+        <span>-></span>
 
-      <LocalLink
-        find={'recommendations-page'}
-        to='/recommendations'
-        exact
-        className={'link'}
-        draggable='false'>
-        <span id={'recommendations'}>recs</span>
-      </LocalLink>
+        <LocalLink
+          find={'recommendations-page'}
+          to='/recommendations'
+          exact
+          className={'link'}
+          draggable='false'>
+          <span id={'recommendations'}>recs</span>
+        </LocalLink>
 
-      <span>-></span>
+        <span>-></span>
 
-      <LocalLink
-        find={'contact-page'}
-        to='/contact'
-        exact
-        className={'link'}
-        draggable='false'>
-        <span id={'contact'}>contact</span>
-      </LocalLink>
+        <LocalLink
+          find={'contact-page'}
+          to='/contact'
+          exact
+          className={'link'}
+          draggable='false'>
+          <span id={'contact'}>contact</span>
+        </LocalLink>
+      </nav>
     </header>
   );
 };
