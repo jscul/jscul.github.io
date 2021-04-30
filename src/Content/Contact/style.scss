@@ -1,6 +1,7 @@
 #contact-page {
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 1fr 2fr;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
   h1 {
     place-self: end stretch;
@@ -14,21 +15,14 @@
   }
 
   .contact-form {
-    place-self: start stretch;
-    grid-row: 2/3;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
 
     grid-column: 2/3;
     @media only screen and (max-width: 800px) {
       grid-column: 1/4;
     }
-
-    display: flex;
-    flex-direction: column;
-
-    font-size: 18px;
-    padding: 16px;
-
-    position: relative;
 
     > div {
       display: flex;

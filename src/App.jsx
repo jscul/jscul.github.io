@@ -6,7 +6,7 @@ import Server from './game/server';
 
 import Blog from './Content/Blog';
 
-import Header from 'Header';
+import Header from './components/Header';
 import Content from 'Content';
 import sections from './Content/sections';
 

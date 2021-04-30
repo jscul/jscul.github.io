@@ -3,71 +3,70 @@
 $image-size: 80px;
 
 #experience-page {
-  .center-content {
-    font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    padding: 32px;
+  font-size: 18px;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+  }
+
+  .workplace-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
 
-    h1 {
-      transform: rotate(-90deg);
-      margin: 0;
+    .question-mark {
+      font-size: 60px;
+      line-height: $image-size;
+      text-align: center;
+      border: 2px dashed #333;
     }
 
-    .workplace-container {
-      display: flex;
-      flex-direction: column;
+    span {
+      margin: 0 12px;
+      color: #444;
+    }
 
-      .question-mark {
-        font-size: 60px;
-        line-height: $image-size;
-        text-align: center;
-        border: 2px dashed #333;
-      }
+    .circle,
+    .question-mark {
+      background-color: $eerie-black;
+      color: #eee;
+      z-index: 1;
+      width: $image-size;
+      height: $image-size;
+      box-shadow: 0 2px 12px rgba($color: #000000, $alpha: 0.6);
+      border-radius: 100%;
 
-      span {
-        margin: 0 12px;
-        color: #444;
-      }
-
-      .circle,
-      .question-mark {
-        background-color: $eerie-black;
-        color: #eee;
-        z-index: 1;
-        width: $image-size;
-        height: $image-size;
-        box-shadow: 0 2px 12px rgba($color: #000000, $alpha: 0.6);
-        border-radius: 100%;
-
+      & ~ .circle {
+        grid-row: 3/4;
         & ~ .circle {
-          grid-row: 3/4;
-          & ~ .circle {
-            grid-row: 4/5;
-          }
+          grid-row: 4/5;
         }
       }
+    }
 
-      .workplace {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin: 16px 0;
+    .workplace {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 16px 0;
 
-        .name {
-          font-size: 1.9rem;
-          white-space: nowrap;
-        }
+      .name {
+        font-size: 1.9rem;
+        white-space: nowrap;
+      }
 
-        .info {
-          font-size: 1.4rem;
-          padding-left: 4px;
-          color: gray;
-          white-space: nowrap;
-        }
+      .info {
+        font-size: 1.4rem;
+        padding-left: 4px;
+        color: gray;
+        white-space: nowrap;
       }
     }
   }

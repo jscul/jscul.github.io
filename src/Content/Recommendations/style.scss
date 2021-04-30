@@ -7,7 +7,7 @@ $other-color: #979797;
   justify-content: center;
 
   grid-template-columns: auto 1fr 1fr 1fr auto;
-  grid-template-rows: 1fr 0fr 1fr;
+  grid-template-rows: 0fr 0fr 0fr;
 
   h1 {
     grid-column: 1/7;
@@ -104,10 +104,8 @@ $other-color: #979797;
     grid-template-columns: 0fr 1fr 0fr;
     align-items: center;
 
-    padding: 0 32px;
     @media only screen and (max-width: 800px) {
       grid-column: 1/7;
-      padding: 0;
     }
 
     .recommendation {

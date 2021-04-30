@@ -69,66 +69,62 @@ export default ({section}) => {
   return (
     <>
       <section id={`${section.id}-page`} className={'page scroll-offset'}>
-        <div className={'center-content'}>
-          <ol>
-            {Object.keys(projects).map((id, i) => {
-              const {
-                title,
-                skills,
-                client: {logo},
-                live: {web, android, ios},
-                github,
-              } = projects[id];
+        <ol>
+          {Object.keys(projects).map((id, i) => {
+            const {
+              title,
+              skills,
+              client: {logo},
+              live: {web, android, ios},
+              github,
+            } = projects[id];
 
-              let links = [];
-              if (web)
-                links.push(
-                  <a target={'_blank'} href={web}>
-                    <Web />
-                  </a>
-                );
-              if (android)
-                links.push(
-                  <a target={'_blank'} href={android}>
-                    <Android />
-                  </a>
-                );
-              if (ios)
-                links.push(
-                  <a target={'_blank'} href={ios}>
-                    <Apple />
-                  </a>
-                );
-
-              const skills2 = skills.length !== 0 && (
-                <div className={'skills-used'}>
-                  {skills.map((s, i) => s.id)}
-                </div>
+            let links = [];
+            if (web)
+              links.push(
+                <a target={'_blank'} href={web}>
+                  <Web />
+                </a>
+              );
+            if (android)
+              links.push(
+                <a target={'_blank'} href={android}>
+                  <Android />
+                </a>
+              );
+            if (ios)
+              links.push(
+                <a target={'_blank'} href={ios}>
+                  <Apple />
+                </a>
               );
 
-              return (
-                <li key={i}>
-                  <div className={'head'}>{title}</div>
-                  {logo && <img src={logo} />}
-                  {links.length !== 0 && (
-                    <div className={'live-links'}>
-                      {links.map((link, i) => {
-                        return <div key={i}>{link}</div>;
-                      })}
-                    </div>
-                  )}
-                  {github && (
-                    <div className={'github'}>
-                      <a href={github} target={'_blank'}>
-                        <GitHub />
-                      </a>
-                    </div>
-                  )}
-                </li>
-              );
-            })}
-          </ol>
-        </div>
+            const skills2 = skills.length !== 0 && (
+              <div className={'skills-used'}>{skills.map((s, i) => s.id)}</div>
+            );
+
+            return (
+              <li key={i}>
+                <div className={'head'}>{title}</div>
+                {logo && <img src={logo} />}
+                {links.length !== 0 && (
+                  <div className={'live-links'}>
+                    {links.map((link, i) => {
+                      return <div key={i}>{link}</div>;
+                    })}
+                  </div>
+                )}
+                {github && (
+                  <div className={'github'}>
+                    <a href={github} target={'_blank'}>
+                      <GitHub />
+                    </a>
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ol>
       </section>
     </>
   );

@@ -1,70 +1,65 @@
 #projects-page {
-  .center-content {
-    grid-column: 2/4;
-    grid-row: 2/4;
-    display: flex;
-    font-size: 18px;
-    position: relative;
-    align-self: start;
-    justify-self: start;
-    padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    ol {
-      li {
-        background-color: #0a0a0a;
-        margin: 32px;
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-size: 12px;
+  font-size: 18px;
 
-        .head {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 12px 0;
-          font-size: 16px;
-          line-height: 18px;
+  ol {
+    li {
+      background-color: #0a0a0a;
+      margin: 32px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
 
-          .skills-used {
-            display: flex;
-            flex-direction: row;
+      .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        font-size: 16px;
+        line-height: 18px;
 
-            img {
-              height: 18px;
-              width: 18px;
-              padding: 0 3px;
-            }
-          }
-        }
-
-        img {
-          max-height: 56px;
-          max-width: 56px;
-          border-radius: 3px;
-        }
-
-        .live-links {
+        .skills-used {
           display: flex;
           flex-direction: row;
-          padding: 4px;
-        }
 
-        .github {
-          svg {
-            padding: 4px 8px;
-            color: #fff;
-            height: 48px;
+          img {
+            height: 18px;
+            width: 18px;
+            padding: 0 3px;
           }
         }
+      }
 
-        .live-links {
-          justify-content: flex-end;
-          svg {
-            padding: 4px 8px;
-            color: #888;
-            height: 28px;
-            width: 28px;
-          }
+      img {
+        max-height: 56px;
+        max-width: 56px;
+        border-radius: 3px;
+      }
+
+      .live-links {
+        display: flex;
+        flex-direction: row;
+        padding: 4px;
+      }
+
+      .github {
+        svg {
+          padding: 4px 8px;
+          color: #fff;
+          height: 48px;
+        }
+      }
+
+      .live-links {
+        justify-content: flex-end;
+        svg {
+          padding: 4px 8px;
+          color: #888;
+          height: 28px;
+          width: 28px;
         }
       }
     }

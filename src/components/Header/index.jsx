@@ -34,7 +34,11 @@ export default ({page, sections}) => {
   const windowResize = (e) => moveBracketsTo(page || 'home');
   useEffect(() => {
     window.addEventListener('resize', windowResize);
-    return () => window.removeEventListener('resize', windowResize);
+    header.current.addEventListener('scroll', windowResize);
+    return () => {
+      window.removeEventListener('resize', windowResize);
+      header.current.removeEventListener('scroll', windowResize);
+    };
   });
 
   useEffect(() => {
@@ -100,7 +104,6 @@ export default ({page, sections}) => {
           replace={false}>
           <Owl />
         </NavLink>
-        <div className='fade-in' />
 
         <div
           className={`brackets ${initialLoad || 'no-transition'}`}
@@ -118,7 +121,9 @@ export default ({page, sections}) => {
           <span id={'home'}>home</span>
         </LocalLink>
 
-        <div className='stretch'></div>
+        <div className='stretch' />
+
+        <span className={'first-arrow'}>-></span>
 
         <LocalLink
           find={'about-page'}
