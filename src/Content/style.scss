@@ -1,21 +1,15 @@
 @import '../global';
 
 #root {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	overflow: hidden;
 }
 
 section {
-  // basically a page
-
-  width: min(100vw, 640px);
-  margin: auto;
-  overflow-x: auto;
-  overflow-y: hidden;
-
-  // make container take up entire page minus the header
-  padding-top: $header-height;
-  box-sizing: border-box;
+	min-height: 100vh;
+	width: min(100vw, 740px);
+	margin: auto;
+	overflow: hidden;
 }

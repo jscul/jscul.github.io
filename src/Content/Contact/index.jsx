@@ -73,7 +73,9 @@ export default ({section}) => {
 	return (
 		<>
 			<section id={`${section.id}-page`} className={'page scroll-offset'}>
-				<h1>Contact the Developer</h1>
+				<h1>
+					Contact the Developer<span>🐍</span>
+				</h1>
 				<div className='contact-form'>
 					<div>
 						<label htmlFor=''>Full name?</label>
