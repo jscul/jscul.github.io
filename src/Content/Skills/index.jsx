@@ -166,27 +166,39 @@ const SelectedSkill = ({skill}) => {
 };
 
 export default ({section, history}) => {
-	const [selectedSkill, setSelectedSkill] = useState('js');
+	const [selectedSkill, setSelectedSkill] = useState('');
 	return (
 		<>
 			<section id={`skills-page`} className={'page scroll-offset'}>
-				<h1>Skills</h1>
-				{Object.keys(skills).map((section, i) => {
-					return (
-						<div key={i} className={'skills-section'}>
-							<div className={'title'}>{section}</div>
-							{skills[section].map((skill, j) => (
-								<button
-									onClick={(e) => setSelectedSkill(skill.id)}
-									draggable={false}
-									className={'item clickable'}>
-									<span id={`skills-${skill.id}`}>{skill.title}</span>
-								</button>
-							))}
-						</div>
-					);
-				})}
-				<SelectedSkill skill={selectedSkill} />
+				<div className='skills-list-container'>
+					{Object.keys(skills).map((section, i) => {
+						return (
+							<div key={i} className={'skills-section'}>
+								<div className={'title'}>{section}</div>
+								<div className={'skills'}>
+									{skills[section].map((skill, j) => (
+										<button
+											onClick={(e) => setSelectedSkill(skill.id)}
+											draggable={false}
+											className={'item clickable'}>
+											<span
+												id={`skills-${skill.id} ${
+													skill.id === selectedSkill ? ' selected' : ''
+												}`}>
+												{skill.title}
+											</span>
+										</button>
+									))}
+								</div>
+							</div>
+						);
+					})}
+				</div>
+				{selectedSkill && (
+					<div className={'skills-info-container'}>
+						<SelectedSkill skill={selectedSkill} />
+					</div>
+				)}
 			</section>
 		</>
 	);

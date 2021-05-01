@@ -8,8 +8,7 @@
 }
 
 section {
-	min-height: 100vh;
-	width: min(100vw, 740px);
-	margin: auto;
-	overflow: hidden;
+	display: grid;
+	justify-content: center;
+	align-content: center;
 }

@@ -3,151 +3,157 @@
 $logo-width: 52px;
 
 #skills-page {
-	display: grid;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-	grid-template-columns: 1fr 3fr 3fr 3fr 3fr 1fr;
-	grid-template-rows: 0fr 0fr 1fr;
-	gap: 40px 0;
-
-	h1 {
-		grid-row: 1/2;
-		grid-column: 1/7;
-		place-self: end center;
-		margin: 0;
-	}
-
-	.skills-section {
-		text-align: center;
-		padding: 32px 8px;
-		grid-row: 2/3;
-
-		grid-column: 1/3;
-		& ~ .skills-section {
-			grid-column: 3/5;
-			& ~ .skills-section {
-				grid-column: 5/7;
-			}
-		}
-
-		.title,
-		.item {
-			white-space: nowrap;
-		}
-
-		.title {
-			color: gray;
-			font-size: 1.4rem;
-			padding-bottom: 16px;
-		}
-
-		.item {
-			display: block;
-			font-size: 1.6rem;
-			padding: 5px 0;
-			color: #fff;
-			background-color: transparent;
-			border: none;
-			outline: none;
-			text-decoration: none;
-
-			&.active {
-				text-decoration: underline;
-			}
-		}
-
-		.clickable {
-			cursor: pointer;
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
-
-	.skill-logo {
-		grid-column: 1/2;
-		grid-row: 3/4;
-
-		padding-right: 46px;
-
+	.skills-list-container {
 		display: flex;
-		flex-direction: column;
-		align-items: flex-end;
+		flex-direction: row;
 
-		@for $i from 1 to 6 {
-			> a:nth-child(#{$i}),
-			> img:nth-child(#{$i}) {
-				animation-delay: #{$i * 0.1}s;
-			}
-		}
+		.skills-section {
+			text-align: center;
+			grid-row: 2/3;
 
-		> a,
-		> img {
-			opacity: 0;
-			animation: fadeIn ease 0.4s forwards;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 
-			backface-visibility: hidden;
-			transition: filter 0.3s ease;
-			filter: grayscale(100%) opacity(64%) contrast(80%);
-
-			&.hovering {
-				filter: grayscale(0) opacity(100%);
+			grid-column: 1/3;
+			& ~ .skills-section {
+				grid-column: 3/5;
+				& ~ .skills-section {
+					grid-column: 5/7;
+				}
 			}
 
-			& + img,
-			& + a {
-				margin-top: 16px;
+			.skills {
+				padding: 18px 28px;
+				margin: 8px;
+				background-color: #222;
+				border-radius: 5px;
+				box-shadow: 0 1px 2px 4px 8px rgba($color: #000000, $alpha: 0.4);
 			}
-		}
 
-		img {
-			width: $logo-width;
-			height: auto;
+			.title,
+			.item {
+				white-space: nowrap;
+			}
+
+			.title {
+				color: gray;
+				font-size: 1.4rem;
+			}
+
+			.item {
+				display: block;
+				font-size: 1.6rem;
+				padding: 5px 0;
+				color: #fff;
+				background-color: transparent;
+				border: none;
+				outline: none;
+				text-decoration: none;
+
+				.selected {
+					color: red;
+				}
+			}
+
+			.clickable {
+				cursor: pointer;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 
-	.markdown-container {
-		grid-column: 2/7;
-		place-self: top center;
+	.skills-info-container {
+		display: flex;
 
-		.markdown {
-			font-size: 14px;
-			overflow: hidden;
+		.skill-logo {
+			display: flex;
+			flex-direction: column;
 
-			a {
-				color: #fff;
+			padding-right: 48px;
+
+			@for $i from 1 to 6 {
+				> a:nth-child(#{$i}),
+				> img:nth-child(#{$i}) {
+					animation-delay: #{$i * 0.1}s;
+				}
+			}
+
+			> a,
+			> img {
+				opacity: 0;
+				animation: fadeIn ease 0.4s forwards;
+
+				backface-visibility: hidden;
+				transition: filter 0.3s ease;
+				filter: grayscale(100%) opacity(64%) contrast(80%);
+
 				&.hovering {
-					color: $caribbean-green;
+					filter: grayscale(0) opacity(100%);
+				}
+
+				& + img,
+				& + a {
+					margin-top: 24px;
 				}
 			}
 
-			h1 {
-				font-size: 20px;
-				line-height: 24px;
-				margin: 0 0 12px 0;
-				padding: 0 0 12px 0;
-				color: #fff;
+			img {
+				width: $logo-width;
+				height: auto;
 			}
+		}
 
-			p {
-			}
+		.markdown-container {
+			grid-column: 2/7;
+			place-self: top center;
 
-			ul,
-			ol {
-				padding-left: 24px;
-				li {
-					margin: 12px 0;
-					line-height: 22px;
+			.markdown {
+				font-size: 14px;
+				overflow: hidden;
+
+				a {
+					color: #fff;
+					&.hovering {
+						color: $caribbean-green;
+					}
 				}
 
-				em,
-				strong {
+				h1 {
+					font-size: 20px;
+					line-height: 24px;
+					margin: 0 0 12px 0;
+					padding: 0 0 12px 0;
 					color: #fff;
 				}
-			}
 
-			sup {
-				font-size: 12px;
-				color: #999;
+				p {
+				}
+
+				ul,
+				ol {
+					padding-left: 24px;
+					li {
+						margin: 12px 0;
+						line-height: 22px;
+					}
+
+					em,
+					strong {
+						color: #fff;
+					}
+				}
+
+				sup {
+					font-size: 12px;
+					color: #999;
+				}
 			}
 		}
 	}
