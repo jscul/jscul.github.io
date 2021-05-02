@@ -12,34 +12,34 @@ export default [
 		component: Home,
 		path: '/',
 	},
-	{
-		id: 'about',
-		path: '/about',
-		component: About,
-	},
-	{
-		id: 'skills',
-		path: '/skills',
-		component: Skills,
-	},
-	{
-		id: 'experience',
-		path: '/experience',
-		component: Experience,
-	},
-	{
-		id: 'projects',
-		path: '/projects',
-		component: Portfolio,
-	},
-	{
-		id: 'recommendations',
-		path: '/recommendations',
-		component: Recommendations,
-	},
-	{
-		id: 'contact',
-		path: '/contact',
-		component: Contact,
-	},
+	// {
+	// 	id: 'about',
+	// 	path: '/about',
+	// 	component: About,
+	// },
+	// {
+	// 	id: 'skills',
+	// 	path: '/skills',
+	// 	component: Skills,
+	// },
+	// {
+	// 	id: 'experience',
+	// 	path: '/experience',
+	// 	component: Experience,
+	// },
+	// {
+	// 	id: 'projects',
+	// 	path: '/projects',
+	// 	component: Portfolio,
+	// },
+	// {
+	// 	id: 'recommendations',
+	// 	path: '/recommendations',
+	// 	component: Recommendations,
+	// },
+	// {
+	// 	id: 'contact',
+	// 	path: '/contact',
+	// 	component: Contact,
+	// },
 ];

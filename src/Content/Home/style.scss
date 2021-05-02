@@ -1,18 +1,27 @@
 #home-page {
 	height: 100vh;
+	user-select: none;
+	z-index: 0;
+
+	& > * {
+		z-index: 1;
+	}
 
 	h1 {
 		font-size: 42px;
 		margin: 0;
+		text-align: center;
 	}
 
 	h2 {
 		font-size: 18px;
+		text-align: center;
 	}
 
 	.social-media-container {
+		z-index: 2;
 		display: grid;
-		justify-content: flex-start;
+		justify-content: center;
 		align-content: center;
 
 		gap: 4px;
@@ -25,17 +34,13 @@
 		}
 
 		.social-media-link {
-			color: rgb(38, 38, 38);
+			color: #aaa;
 			width: 36px;
 			height: 36px;
-			padding: 12px 12px 24px 0;
+			padding: 12px;
 
 			opacity: 0;
 			animation: fadeIn ease 0.4s forwards;
-
-			& ~ .social-media-link {
-				padding-left: 12px;
-			}
 
 			&:hover {
 				color: #eee;

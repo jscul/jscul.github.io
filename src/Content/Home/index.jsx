@@ -4,6 +4,8 @@ import {NavLink} from 'react-router-dom';
 
 import LocalLink from 'components/LocalLink';
 
+import Graph from '../../components/Graph';
+
 import './style.scss';
 
 export default ({section, history}) => {
@@ -90,6 +92,7 @@ export default ({section, history}) => {
 					</svg>
 				</a>
 			</div>
+			<Graph />
 		</section>
 	);
 };

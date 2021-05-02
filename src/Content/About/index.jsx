@@ -1,7 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 
 import {NavLink, Route} from 'react-router-dom';
-import ReactMarkdownWithHtml from 'react-markdown/with-html';
 
 import LocalLink from 'components/LocalLink';
 
@@ -11,6 +10,7 @@ export default ({section, history}) => {
 	return (
 		<>
 			<section id={'about-page'} className={''}>
+				<p>Humble Beginning</p>
 				<p>
 					I have 4+ years of extensive professional experience building robust
 					software for a variety of clients through collaboration with

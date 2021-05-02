@@ -3,8 +3,8 @@ import React, {PureComponent, useState, useRef, useEffect} from 'react';
 import {NavLink, Route} from 'react-router-dom';
 import LocalLink from 'components/LocalLink';
 
-import ReactMarkdownWithHtml from 'react-markdown/with-html';
-
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import hljs from 'highlight.js/lib/core';
 import 'highlight.js/styles/dracula.css';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -122,7 +122,8 @@ class _SelectedSkill extends PureComponent {
 				<div
 					className={'markdown-container'}
 					ref={(r) => (this.skillDescription = r)}>
-					<ReactMarkdownWithHtml
+					<ReactMarkdown
+						rehypePlugins={[rehypeRaw]}
 						allowDangerousHtml
 						renderers={{
 							link: ({href, children}) => {
@@ -154,7 +155,7 @@ class _SelectedSkill extends PureComponent {
 						}}
 						className={`markdown`}>
 						{this.state.description}
-					</ReactMarkdownWithHtml>
+					</ReactMarkdown>
 				</div>
 			</>
 		);
