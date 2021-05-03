@@ -76,7 +76,7 @@ export default ({section, history}) => {
 					</svg>
 				</a>
 				<a
-					title={'hackerrank'}
+					title={'codepen'}
 					target={'_blank'}
 					href='https://codepen.io/jscul'
 					className={'social-media-link'}>

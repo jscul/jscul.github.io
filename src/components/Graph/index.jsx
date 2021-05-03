@@ -122,11 +122,12 @@ export default ({}) => {
 
 		const nodeGraphics = nodes.map((n) => n.getNodeGraphic());
 		nodesContainer.addChild(...nodeGraphics);
+		nodesContainer.sortableChildren = true;
 
 		let lines = connect(nodeGraphics);
 		linesContainer.addChild(...lines);
 
-		let aAngle = 19;
+		let aAngle = 1;
 		window.addEventListener('click', () => {
 			// add node
 			// const n = new Node('a');
@@ -180,6 +181,7 @@ export default ({}) => {
 					(relativeMouseX - n.x) ** 2 + (relativeMouseY - n.y) ** 2
 				);
 				n.scale.set(-sigmoid(dist / 60) * 2 + 3);
+				n.zIndex = -dist;
 			});
 
 			//
